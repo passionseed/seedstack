@@ -20,7 +20,7 @@ Connecting is optional. Every SeedStack skill works fully without it; events jus
 
 1. Explain in two sentences: connecting lets mentors see which step they are on and help when they are stuck. Because they are under 20, a parent also has to agree.
 2. Run `node "<skills dir>/seedstack-connect/sync.mjs" link`. `<skills dir>` is `~/.config/opencode/skills` on Mac and `$HOME\.config\opencode\skills` on Windows.
-3. Show the student the link and the code it printed. They open the link, sign in with **the same Discord account they used to join the SHIFT server**, and the first time they read the notice, agree, and send the parent link to a parent (LINE is fine). Once both agreed, the page shows the same code with a "ใช่ เชื่อมเครื่องนี้" button. Tell them to press it only if the code matches.
+3. Show the student the link and the code it printed. They open the link, sign in with **the same Discord account they used to join the SHIFT server**, and the first time they read the notice, agree, and send the parent link to a parent (LINE is fine). Once both agreed, the page asks them to type the 8-character code. They type the code from this screen and press "เชื่อมเครื่องนี้". Remind them: only ever type a code from their own OpenCode, never one someone sent them.
 4. When they say they pressed it (or if they ask), run `node "<skills dir>/seedstack-connect/sync.mjs" link-wait`. It waits up to 90 seconds. If it says still waiting, ask whether they pressed the button, then run it again.
    If the parent has not answered yet, that is fine: tell them to run `/seedstack-connect` again after the parent agrees (the code expires in 10 minutes).
 5. Tell them the result line. They never need to copy a token anywhere; it goes straight from the server to this computer.

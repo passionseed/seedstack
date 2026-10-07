@@ -15,10 +15,9 @@ function Refresh-Path {
 Write-Host @"
 
 SeedStack จะทำสิ่งนี้ในเครื่องเรา:
-  1. ติดตั้ง Node.js LTS ด้วย winget (ถ้ายังไม่มี) winget จะให้เรากดยอมรับเงื่อนไขของ Node เอง
-  2. ติดตั้ง OpenCode ด้วย npm (ถ้ายังไม่มี)
-  3. ตั้ง PowerShell ให้รันเครื่องมือที่เราติดตั้งเองได้ (RemoteSigned เฉพาะบัญชีเรา)
-  4. คัดลอก skills และ commands ของ SeedStack ไปที่ $ConfigDir
+  1. ตั้ง PowerShell ให้รันเครื่องมือที่เราติดตั้งเองได้ (RemoteSigned เฉพาะบัญชีเรา)
+  2. ติดตั้ง OpenCode ด้วย npm (ถ้ายังไม่มี ต้องมี Node.js ก่อน ถ้ายังไม่มีจะเปิดหน้า nodejs.org ให้ติดตั้งเอง)
+  3. คัดลอก skills และ commands ของ SeedStack ไปที่ $ConfigDir
   ไม่ส่งข้อมูลอะไรให้ PassionSeed จนกว่าเราจะพิมพ์ /seedstack-connect และผู้ปกครองยินยอมบนเว็บ
   ลบออกทีหลังได้: ลบโฟลเดอร์ seedstack-* ใน $ConfigDir\skills และไฟล์ seedstack-*.md ใน $ConfigDir\commands
 
@@ -39,9 +38,11 @@ if ((Get-ExecutionPolicy -Scope CurrentUser) -in @("Undefined", "Restricted")) {
 
 if (-not (Get-Command opencode -ErrorAction SilentlyContinue)) {
   if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
-    Say "Installing Node.js LTS (needed for OpenCode)"
-    winget install --id OpenJS.NodeJS.LTS -e
-    Refresh-Path
+    Say "ต้องมี Node.js ก่อน กำลังเปิดหน้าดาวน์โหลด"
+    Write-Host "เลือก LTS > Windows > ดาวน์โหลดไฟล์ .msi แล้วดับเบิลคลิกติดตั้ง (ค่าเริ่มต้นได้เลย)"
+    Write-Host "เสร็จแล้วปิด PowerShell เปิดใหม่ แล้ววางคำสั่งติดตั้ง SeedStack อีกครั้ง"
+    Start-Process "https://nodejs.org/en/download"
+    return
   }
   Say "Installing OpenCode"
   npm install -g opencode-ai

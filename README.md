@@ -25,7 +25,7 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 ## สิ่งที่เปลี่ยนในเครื่อง
 
 - **Mac:** ติดตั้ง OpenCode (ถ้ายังไม่มี) และเพิ่ม PATH ใน `~/.zshrc` หรือ `~/.bashrc`
-- **Windows:** ติดตั้ง Node.js LTS ด้วย winget และ OpenCode ด้วย npm (ถ้ายังไม่มี), ตั้ง PowerShell execution policy เป็น `RemoteSigned` เฉพาะบัญชีเรา
+- **Windows:** ติดตั้ง OpenCode ด้วย npm (ถ้ายังไม่มี Node.js ตัวติดตั้งจะเปิดหน้า nodejs.org ให้เราติดตั้งเองก่อน), ตั้ง PowerShell execution policy เป็น `RemoteSigned` เฉพาะบัญชีเรา
 - ทั้งสองแบบ: คัดลอก skills และ commands ไปที่ `~/.config/opencode` (Windows: `$HOME\.config\opencode`)
 
 ลบออก: ลบโฟลเดอร์ `seedstack-*` ใน `~/.config/opencode/skills` และไฟล์ `seedstack-*.md` ใน `~/.config/opencode/commands`
@@ -34,7 +34,7 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 
 | คำสั่งใน OpenCode | ทำอะไร | ได้อะไร |
 |---|---|---|
-| `/seedstack-install` | พาติดตั้ง Node, git, Vercel CLI, Supabase CLI ทีละขั้น เราพิมพ์เอง | เครื่องพร้อม ship + โฟลเดอร์โปรเจกต์ |
+| `/seedstack-install` | เปิดหน้าเว็บทางการของ Node, git, Vercel CLI, Supabase CLI ให้ทีละตัว บอกว่าดูตรงไหน เราติดตั้งและพิมพ์คำสั่งเองใน terminal | เครื่องพร้อม ship + โฟลเดอร์โปรเจกต์ |
 | `/seedstack-scope` | ถามคำถามจากบทสัมภาษณ์ของเรา จนเราพิมพ์ "ล็อก" | `scope-card.md` |
 | `/seedstack-ship` | เช็กก่อนสร้าง แล้วเช็กลิงก์หลัง deploy | `ship-ticket.md` + ลิงก์ live |
 

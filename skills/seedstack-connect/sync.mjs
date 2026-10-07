@@ -120,7 +120,7 @@ async function link() {
 
   const { device_code, user_code, url } = result.body;
   writePrivate(PENDING_FILE, JSON.stringify({ device_code, user_code }));
-  console.log(`SeedStack: open this link, sign in with Discord, and check the code matches.`);
+  console.log(`SeedStack: open this link, sign in with Discord, and type this code there.`);
   console.log(`  ${url}`);
   console.log(`  code: ${user_code}`);
 }
