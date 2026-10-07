@@ -14,16 +14,18 @@ Connecting is optional. Every SeedStack skill works fully without it; events jus
 
 - Speak the student's language, default Thai, casual peer tone, no em dashes.
 - Never pressure. If they do not want to connect, say that is completely fine and move on.
-- Never ask for their password, email, or anything besides the connect code.
+- Never ask for their password, email, or any token. Linking happens in the browser.
 
 ## Connect flow
 
 1. Explain in two sentences: connecting lets mentors see which step they are on and help when they are stuck. Because they are under 20, a parent also has to agree.
-2. Send them to **https://www.passionseed.org/shift/seedstack**. There they read what is collected, agree, send the parent link to a parent (LINE is fine), and once the parent agrees they press "สร้างรหัสเชื่อมต่อ".
-3. When they paste the code (starts with `psss_`), run:
-   `node "<skills dir>/seedstack-connect/sync.mjs" save-token <code>`
-   `<skills dir>` is `~/.config/opencode/skills` on Mac and `$HOME\.config\opencode\skills` on Windows.
-4. Tell them the result line from the script. If it says waiting for consent, remind them the parent still needs to answer.
+2. Run `node "<skills dir>/seedstack-connect/sync.mjs" link`. `<skills dir>` is `~/.config/opencode/skills` on Mac and `$HOME\.config\opencode\skills` on Windows.
+3. Show the student the link and the code it printed. They open the link, sign in with **the same Discord account they used to join the SHIFT server**, and the first time they read the notice, agree, and send the parent link to a parent (LINE is fine). Once both agreed, the page shows the same code with a "ใช่ เชื่อมเครื่องนี้" button. Tell them to press it only if the code matches.
+4. When they say they pressed it (or if they ask), run `node "<skills dir>/seedstack-connect/sync.mjs" link-wait`. It waits up to 90 seconds. If it says still waiting, ask whether they pressed the button, then run it again.
+   If the parent has not answered yet, that is fine: tell them to run `/seedstack-connect` again after the parent agrees (the code expires in 10 minutes).
+5. Tell them the result line. They never need to copy a token anywhere; it goes straight from the server to this computer.
+
+If the page says "บัญชีนี้ยังไม่ได้ผูกกับ SHIFT", they signed in with a different Discord account, or they have not used the join link from their payment message yet. Point them to that link or to the SHIFT LINE.
 
 ## Disconnect
 

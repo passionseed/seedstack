@@ -1,12 +1,14 @@
 #!/usr/bin/env node
 // SeedStack telemetry sync. No dependencies, Node 18+.
 //
-//   node sync.mjs save-token <psss_...>   store the connect code from /shift/seedstack
-//   node sync.mjs forget                   delete the stored code
+//   node sync.mjs link        start linking: prints a URL + code to approve in the browser
+//   node sync.mjs link-wait   wait up to ~90s for approval, then store the token (re-run if pending)
+//   node sync.mjs forget      delete the stored token
 //   node sync.mjs status                   connected or local-only
 //   node sync.mjs [sync]                   send unsent events, then exit
 //
-// Events stay in ~/.seedstack/events.jsonl. Nothing leaves this computer without a code,
+// Events stay in ~/.seedstack/events.jsonl. Nothing leaves this computer until the
+// student links this device after signing in with Discord,
 // and the server refuses events unless the student and a parent consented.
 
 import { chmodSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
@@ -17,6 +19,8 @@ const API = process.env.SEEDSTACK_API_URL ?? "https://www.passionseed.org";
 const HOME_DIR = join(homedir(), ".seedstack");
 const TOKEN_FILE = join(HOME_DIR, "token");
 const SENT_FILE = join(HOME_DIR, "sent.json");
+const PENDING_FILE = join(HOME_DIR, "link.json");
+const WAIT_MS = 90_000;
 // Home folder only: a project folder could come from someone else's repo.
 const EVENT_FILE = join(HOME_DIR, "events.jsonl");
 const BATCH = 100;
@@ -53,14 +57,12 @@ function readEvents() {
   return [...byId.values()];
 }
 
-async function post(token, events) {
-  const res = await fetch(`${API}/api/seedstack/events`, {
-    method: "POST",
-    headers: { "content-type": "application/json", authorization: `Bearer ${token}` },
-    body: JSON.stringify({ events }),
-  });
-  const body = await res.json().catch(() => ({}));
-  return { status: res.status, body };
+
+async function postJson(path, body, token) {
+  const headers = { "content-type": "application/json" };
+  if (token) headers.authorization = `Bearer ${token}`;
+  const res = await fetch(`${API}${path}`, { method: "POST", headers, body: JSON.stringify(body ?? {}) });
+  return { status: res.status, body: await res.json().catch(() => ({})) };
 }
 
 async function sync() {
@@ -75,7 +77,7 @@ async function sync() {
     const chunk = pending.slice(i, i + BATCH);
     let result;
     try {
-      result = await post(token, chunk);
+      result = await postJson("/api/seedstack/events", { events: chunk }, token);
     } catch {
       return console.log("SeedStack: offline, will retry next time. Events are safe locally.");
     }
@@ -95,27 +97,70 @@ async function sync() {
   console.log(`SeedStack: sent ${pending.length} event(s) to your mentors.`);
 }
 
-function saveToken(token) {
-  if (!/^psss_[A-Za-z0-9_-]{20,}$/.test(token ?? "")) {
-    console.log("SeedStack: that does not look like a connect code (starts with psss_).");
-    process.exitCode = 1;
-    return;
-  }
+function writePrivate(file, text) {
   mkdirSync(HOME_DIR, { recursive: true, mode: 0o700 });
   // Create owner-only from the start; chmod covers a file left by an older version.
-  writeFileSync(TOKEN_FILE, token, { mode: 0o600 });
+  writeFileSync(file, text, { mode: 0o600 });
   try {
-    chmodSync(TOKEN_FILE, 0o600);
+    chmodSync(file, 0o600);
   } catch {
     // Windows: file ACLs already limit it to the user profile.
   }
-  console.log("SeedStack: connected. Syncing...");
-  return sync();
 }
 
-const [command = "sync", arg] = process.argv.slice(2);
+
+async function link() {
+  let result;
+  try {
+    result = await postJson("/api/seedstack/link/start");
+  } catch {
+    return console.log("SeedStack: cannot reach passionseed.org. Check the internet and try again.");
+  }
+  if (result.status !== 200) return console.log(`SeedStack: server said ${result.status}, try again in a minute.`);
+
+  const { device_code, user_code, url } = result.body;
+  writePrivate(PENDING_FILE, JSON.stringify({ device_code, user_code }));
+  console.log(`SeedStack: open this link, sign in with Discord, and check the code matches.`);
+  console.log(`  ${url}`);
+  console.log(`  code: ${user_code}`);
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+async function linkWait() {
+  const pending = readJson(PENDING_FILE, null);
+  if (!pending?.device_code) return console.log("SeedStack: no link in progress. Run: node sync.mjs link");
+
+  const deadline = Date.now() + WAIT_MS;
+  while (Date.now() < deadline) {
+    let result;
+    try {
+      result = await postJson("/api/seedstack/link/poll", { device_code: pending.device_code });
+    } catch {
+      await sleep(3000);
+      continue;
+    }
+    if (result.status === 410) {
+      rmSync(PENDING_FILE, { force: true });
+      return console.log("SeedStack: link expired. Run: node sync.mjs link");
+    }
+    if (result.body.status === "approved" && result.body.token) {
+      writePrivate(TOKEN_FILE, result.body.token);
+      rmSync(PENDING_FILE, { force: true });
+      console.log("SeedStack: linked. Syncing...");
+      return sync();
+    }
+    await sleep(3000);
+  }
+  console.log(`SeedStack: still waiting for approval of code ${pending.user_code}. Run link-wait again after approving.`);
+}
+
+const [command = "sync"] = process.argv.slice(2);
 const commands = {
-  "save-token": () => saveToken(arg),
+  link,
+  "link-wait": linkWait,
   forget: () => {
     rmSync(TOKEN_FILE, { force: true });
     console.log("SeedStack: disconnected. Nothing more will be sent.");
