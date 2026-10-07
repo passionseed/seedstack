@@ -1,0 +1,40 @@
+# SeedStack
+
+ชุดเครื่องมือสำหรับนักเรียน SHIFT ที่ใช้ใน [OpenCode](https://opencode.ai): ตั้งเครื่องเอง, ล็อก scope เอง, ship ของจริงเอง
+
+AI ในนี้ **ไม่ตอบแทนเรา** มันถามคำถาม ให้เราไปคุยกับคนจริง แล้วช่วยเช็กว่าเราพร้อมหรือยัง ทุกคำสั่งติดตั้งเราพิมพ์เอง
+
+## ติดตั้ง
+
+**Mac** เปิด Terminal แล้ววาง:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/passionseed/seedstack/main/install.sh | bash
+```
+
+**Windows** เปิด **PowerShell** (ไม่ใช่ cmd) แล้ววาง:
+
+```powershell
+irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | iex
+```
+
+เสร็จแล้วปิดเปิด Terminal / PowerShell ใหม่ พิมพ์ `opencode` แล้วเลือกโมเดลตามที่ mentor บอกใน #อ่านก่อน
+
+## ใช้ยังไง
+
+| คำสั่งใน OpenCode | ทำอะไร | ได้อะไร |
+|---|---|---|
+| `/seedstack-install` | พาติดตั้ง Node, git, Vercel CLI, Supabase CLI ทีละขั้น เราพิมพ์เอง | เครื่องพร้อม ship + โฟลเดอร์โปรเจกต์ |
+| `/seedstack-scope` | ถามคำถามจากบทสัมภาษณ์ของเรา จนเราพิมพ์ "ล็อก" | `scope-card.md` |
+| `/seedstack-ship` | เช็กก่อนสร้าง แล้วเช็กลิงก์หลัง deploy | `ship-ticket.md` + ลิงก์ live |
+
+ทุกขั้นจดเวลาและสถานะไว้ใน `.seedstack/events.jsonl` ในโฟลเดอร์โปรเจกต์ (ไม่มีชื่อหรือข้อมูลติดต่อใคร)
+
+ติดตรงไหน โพสต์ error ใน #ถามได้ทุกเรื่อง เพื่อนตอบไวกว่าที่คิด
+
+## For maintainers
+
+- Skills live in `skills/<name>/SKILL.md` (OpenCode skill format), slash commands in `commands/`.
+- Installers copy both into `~/.config/opencode/` (`$HOME\.config\opencode` on Windows).
+- `./scripts/validate.sh` checks skill names, descriptions and no em dashes.
+- Test an install from a local checkout: `SEEDSTACK_SRC=$PWD HOME=$(mktemp -d) ./install.sh`
