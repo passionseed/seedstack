@@ -41,12 +41,5 @@ When they give you a URL (or say they deployed):
 
 ## Telemetry
 
-Append one JSON line per event to `.seedstack/events.jsonl` with your file editing tool:
-
-```json
-{"ts":"<ISO time>","step":"ship","event":"start"}
-{"ts":"<ISO time>","step":"ship","event":"ticket","minutes":<since start>,"next":"build"}
-{"ts":"<ISO time>","step":"ship","event":"done","live_url":"<url>","next":"<first test, their words>"}
-```
-
-No names or contact details of testers.
+Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool). Step is `ship`. Events: start, ticket (minutes, next: "build"), done (live_url, next: first test in their words).
+No names or contact details in events. Sync after `done`, `stuck` and `ticket`; it is silent and safe when the student has not connected.

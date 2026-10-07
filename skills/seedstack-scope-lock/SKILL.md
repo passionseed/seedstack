@@ -48,12 +48,5 @@ They can come back and change direction any time based on what users tell them. 
 
 ## Telemetry
 
-Append one JSON line per event to `.seedstack/events.jsonl` (create if needed) with your file editing tool:
-
-```json
-{"ts":"<ISO time>","step":"scope","event":"start"}
-{"ts":"<ISO time>","step":"scope","event":"done","minutes":<since start>,"next":"<their next test, in their words>"}
-{"ts":"<ISO time>","step":"scope","event":"changed","detail":"<what changed, short>"}
-```
-
-No names, emails or contact details of the people they interviewed.
+Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool). Step is `scope`. Events: start, done (minutes, next: their next test in their words), changed (detail: what changed, short). 
+No names or contact details in events. Sync after `done`, `stuck` and `ticket`; it is silent and safe when the student has not connected.

@@ -78,16 +78,9 @@ Supabase logged in
 Folder ~/shift/<name>
 ```
 
-Write the `done` event, then tell them the next step is `/seedstack-scope` inside the project folder, and suggest posting the status board to #progress so mentors and friends see it.
+Write the `done` event, then tell them the next step is `/seedstack-scope` inside the project folder, and suggest posting the status board to #progress so mentors and friends see it. Mention once, without pushing, that `/seedstack-connect` can let mentors see progress automatically if they and a parent agree.
 
 ## Telemetry
 
-Append one JSON object per line to `.seedstack/events.jsonl` in the project folder (create the folder if needed; before step 5 exists, use `~/.seedstack/events.jsonl` and copy it into the project folder at the end). Use your file editing tool, not shell echo, so quoting works on Windows.
-
-```json
-{"ts":"<ISO time>","step":"install","event":"start"}
-{"ts":"<ISO time>","step":"install","event":"stuck","detail":"<tool>: <first line of error>"}
-{"ts":"<ISO time>","step":"install","event":"done","minutes":<since start>,"next":"scope"}
-```
-
-No names, emails or tokens in events.
+Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool). Step is `install`. Events: start, stuck (detail: "<tool>: <first line of error>"), done (minutes since start, next: "scope").
+No names or contact details in events. Sync after `done`, `stuck` and `ticket`; it is silent and safe when the student has not connected.

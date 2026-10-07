@@ -13,7 +13,7 @@ for file in skills/*/SKILL.md; do
   if grep -n '—' "$file"; then echo "em dash in $file"; fail=1; fi
 done
 for file in commands/*.md; do
-  skill="$(grep -o 'seedstack-[a-z-]*' "$file" | grep -v "^$(basename "$file" .md)$" | head -1)"
+  skill="$(sed -n 's/^Load the `\(seedstack-[a-z-]*\)` skill.*/\1/p' "$file" | head -1)"
   [ -f "skills/$skill/SKILL.md" ] || { echo "$file points to missing skill '$skill'"; fail=1; }
 done
 [ "$fail" = 0 ] && echo "ok"

@@ -12,6 +12,25 @@ function Refresh-Path {
   $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" + [Environment]::GetEnvironmentVariable("Path", "User")
 }
 
+Write-Host @"
+
+SeedStack จะทำสิ่งนี้ในเครื่องเรา:
+  1. ติดตั้ง Node.js LTS ด้วย winget (ถ้ายังไม่มี) winget จะให้เรากดยอมรับเงื่อนไขของ Node เอง
+  2. ติดตั้ง OpenCode ด้วย npm (ถ้ายังไม่มี)
+  3. ตั้ง PowerShell ให้รันเครื่องมือที่เราติดตั้งเองได้ (RemoteSigned เฉพาะบัญชีเรา)
+  4. คัดลอก skills และ commands ของ SeedStack ไปที่ $ConfigDir
+  ไม่ส่งข้อมูลอะไรให้ PassionSeed จนกว่าเราจะพิมพ์ /seedstack-connect และผู้ปกครองยินยอมบนเว็บ
+  ลบออกทีหลังได้: ลบโฟลเดอร์ seedstack-* ใน $ConfigDir\skills และไฟล์ seedstack-*.md ใน $ConfigDir\commands
+
+"@
+if ($env:SEEDSTACK_YES -ne "1") {
+  $Answer = Read-Host "ติดตั้งไหม? พิมพ์ y แล้วกด Enter [y/N]"
+  if ($Answer -notmatch '^(y|yes)$') {
+    Write-Host "ยกเลิกแล้ว ไม่มีอะไรเปลี่ยนในเครื่อง"
+    return
+  }
+}
+
 # Lets PowerShell run npm-installed tools (opencode, vercel) for this user only.
 if ((Get-ExecutionPolicy -Scope CurrentUser) -in @("Undefined", "Restricted")) {
   Say "Allowing PowerShell to run tools you install (current user only)"
@@ -21,7 +40,7 @@ if ((Get-ExecutionPolicy -Scope CurrentUser) -in @("Undefined", "Restricted")) {
 if (-not (Get-Command opencode -ErrorAction SilentlyContinue)) {
   if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
     Say "Installing Node.js LTS (needed for OpenCode)"
-    winget install --id OpenJS.NodeJS.LTS -e --accept-source-agreements --accept-package-agreements
+    winget install --id OpenJS.NodeJS.LTS -e
     Refresh-Path
   }
   Say "Installing OpenCode"
