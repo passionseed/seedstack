@@ -23,6 +23,16 @@ Getting testers is the hard part, not building. Past cohorts built things and th
 
 Read `scope-card.md` and `ship-ticket.md` if present (who the users are, the 48-hour test, the rung). Read `test-log.md` if it exists. Then pick the part they need: recruit, run, or decide. Write the `start` event the first time.
 
+## Already tested? Sort the feedback first
+
+If they arrive with feedback from tests they already ran (notes, chat screenshots, voice memos they summarise), help them sort each item into three piles before deciding anything. They do the sorting; you ask "เขาทำ หรือเขาพูด?" when it is unclear.
+
+- **ทำ (did):** what the tester actually did: where they got stuck, what they clicked, what they skipped, what they use today. Strongest evidence.
+- **เล่า (story):** something that really happened to them before ("ครั้งที่แล้วผม...", what it cost them). Strong evidence.
+- **ความเห็น (opinion):** "ดีนะ", "สวย", "น่าจะใช้", "ควรเพิ่ม X". Weak; keep it, but do not change direction on opinions alone.
+
+Why: three polite "ดีนะ" can feel like success and still mean nobody would use it. If most of the pile is opinion, the next step is to re-test 2 people with a task (part 2) rather than to build more. Log what they have in `test-log.md`, then go to part 4 (Decide).
+
 ## 1. Recruit: direct asks, not broadcasts
 
 Why: a post that says "ช่วยเทสต์หน่อย" to everyone gets almost nobody. A message to one person, saying why *them*, asking for something small with a time, gets a yes. Expect about 1 in 4 to say yes, so to get 3 to 5 testers, ask 15 to 20 people.
