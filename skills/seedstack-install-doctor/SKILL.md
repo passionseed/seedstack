@@ -79,7 +79,7 @@ Ask what they want to call it (their words, short, no spaces). They run in their
 - Mac: `mkdir -p ~/shift/<name> && cd ~/shift/<name> && git init`
 - Windows: `mkdir $HOME\shift\<name>; cd $HOME\shift\<name>; git init`
 
-Verify the folder and its `.git` exist. Tell them: from now on, open OpenCode inside this folder (`cd` there, then `opencode`).
+Verify the folder and its `.git` exist. Tell them: from now on, open this folder in OpenCode. In the OpenCode app: open project and pick the folder. In the terminal version: `cd` there, then `opencode`. Why: OpenCode works on whatever folder it is opened in.
 
 ## Done
 

@@ -172,7 +172,7 @@ async function checkUpdate() {
   }
   if (!latest) return console.log(`SeedStack ${local}: could not check for updates (offline?).`);
   if (latest === local) return console.log(`SeedStack ${local}: up to date.`);
-  console.log(`SeedStack update available: ${local} -> ${latest}. Close OpenCode, run the install line again, then reopen OpenCode.`);
+  console.log(`SeedStack update available: ${local} -> ${latest}. Quit OpenCode fully, run the install line again in Terminal/PowerShell, then reopen OpenCode.`);
 }
 
 const [command = "sync"] = process.argv.slice(2);

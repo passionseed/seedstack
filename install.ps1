@@ -16,7 +16,7 @@ Write-Host @"
 
 SeedStack จะทำสิ่งนี้ในเครื่องเรา:
   1. ตั้ง PowerShell ให้รันเครื่องมือที่เราติดตั้งเองได้ (RemoteSigned เฉพาะบัญชีเรา)
-  2. ติดตั้ง OpenCode ด้วย npm (ถ้ายังไม่มี ต้องมี Node.js ก่อน ถ้ายังไม่มีจะเปิดหน้า nodejs.org ให้ติดตั้งเอง)
+  2. ติดตั้ง OpenCode ด้วย npm เฉพาะถ้ายังไม่มีทั้งแอป OpenCode และตัว terminal (ต้องมี Node.js ก่อน)
   3. คัดลอก skills และ commands ของ SeedStack ไปที่ $ConfigDir
   ไม่ส่งข้อมูลอะไรให้ PassionSeed จนกว่าเราจะพิมพ์ /seedstack-connect และผู้ปกครองยินยอมบนเว็บ
   ลบออกทีหลังได้: ลบโฟลเดอร์ seedstack-* ใน $ConfigDir\skills และไฟล์ seedstack-*.md ใน $ConfigDir\commands
@@ -36,7 +36,15 @@ if ((Get-ExecutionPolicy -Scope CurrentUser) -in @("Undefined", "Restricted")) {
   Set-ExecutionPolicy -Scope CurrentUser RemoteSigned -Force
 }
 
-if (-not (Get-Command opencode -ErrorAction SilentlyContinue)) {
+# The desktop app reads skills from the same .config\opencode folder but does not
+# put `opencode` on PATH, so look for it too.
+$HasDesktop = (Test-Path (Join-Path $env:APPDATA "ai.opencode.desktop")) -or
+  (Test-Path (Join-Path $env:LOCALAPPDATA "Programs\OpenCode")) -or
+  (Test-Path (Join-Path $env:LOCALAPPDATA "Programs\opencode"))
+
+if ($HasDesktop) {
+  Say "Found the OpenCode app, skipping its install"
+} elseif (-not (Get-Command opencode -ErrorAction SilentlyContinue)) {
   if (-not (Get-Command npm -ErrorAction SilentlyContinue)) {
     Say "ต้องมี Node.js ก่อน กำลังเปิดหน้าดาวน์โหลด"
     Write-Host "เลือก LTS > Windows > ดาวน์โหลดไฟล์ .msi แล้วดับเบิลคลิกติดตั้ง (ค่าเริ่มต้นได้เลย)"
@@ -74,5 +82,5 @@ Copy-Item (Join-Path $Src "commands\seedstack-*.md") (Join-Path $ConfigDir "comm
 if ($Tmp) { Remove-Item $Tmp -Recurse -Force }
 
 Say "Installed SeedStack $(Get-Content (Join-Path $ConfigDir 'skills\seedstack-connect\VERSION') -ErrorAction SilentlyContinue)"
-Say "Done. Close and reopen PowerShell, then run: opencode"
-Say "Inside OpenCode, type: /seedstack-install"
+Say "Done. Close OpenCode completely (also from the system tray) and open it again so it loads the new skills."
+Say "Then open your project folder and type: /seedstack-test (or /seedstack-install if you are just starting)"

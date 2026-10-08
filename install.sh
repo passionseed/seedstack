@@ -9,12 +9,22 @@ CONFIG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/opencode"
 
 say() { printf '\033[1;32m==>\033[0m %s\n' "$1"; }
 
+# The desktop app reads skills from the same ~/.config/opencode, but does not
+# put `opencode` on PATH, so look for it too.
+has_opencode() {
+  command -v opencode >/dev/null 2>&1 ||
+    [ -x "$HOME/.opencode/bin/opencode" ] ||
+    [ -d "/Applications/OpenCode.app" ] ||
+    [ -d "$HOME/Applications/OpenCode.app" ] ||
+    [ -d "$HOME/Library/Application Support/ai.opencode.desktop" ]
+}
+
 # Wrapped in main so the whole script is parsed before it runs (safe for curl | bash).
 confirm() {
   cat <<'MSG'
 
 SeedStack จะทำสิ่งนี้ในเครื่องเรา:
-  1. ติดตั้ง OpenCode จาก opencode.ai (ถ้ายังไม่มี) และเพิ่ม PATH ในไฟล์ตั้งค่า shell (~/.zshrc หรือ ~/.bashrc)
+  1. ติดตั้ง OpenCode จาก opencode.ai (ถ้ายังไม่มีทั้งแอป OpenCode และตัว terminal) และเพิ่ม PATH ในไฟล์ตั้งค่า shell
   2. คัดลอก skills และ commands ของ SeedStack ไปที่ ~/.config/opencode
   ไม่ส่งข้อมูลอะไรให้ PassionSeed จนกว่าเราจะพิมพ์ /seedstack-connect และผู้ปกครองยินยอมบนเว็บ
   ลบออกทีหลังได้: rm -rf ~/.config/opencode/skills/seedstack-* ~/.config/opencode/commands/seedstack-*.md
@@ -36,7 +46,9 @@ MSG
 
 main() {
   confirm
-  if ! command -v opencode >/dev/null 2>&1 && [ ! -x "$HOME/.opencode/bin/opencode" ]; then
+  if has_opencode; then
+    say "Found OpenCode, skipping its install"
+  else
     say "Installing OpenCode"
     curl -fsSL https://opencode.ai/install | bash
   fi
@@ -62,8 +74,8 @@ main() {
   cp "$SRC"/commands/seedstack-*.md "$CONFIG_DIR/commands/"
 
   say "Installed SeedStack $(cat "$CONFIG_DIR/skills/seedstack-connect/VERSION" 2>/dev/null)"
-  say "Done. Close and reopen Terminal, then run: opencode"
-  say "Inside OpenCode, type: /seedstack-install"
+  say "Done. Quit OpenCode completely (Cmd+Q) and open it again so it loads the new skills."
+  say "Then open your project folder and type: /seedstack-test (or /seedstack-install if you are just starting)"
 }
 
 main "$@"

@@ -18,7 +18,9 @@ curl -fsSL https://raw.githubusercontent.com/passionseed/seedstack/main/install.
 irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | iex
 ```
 
-เสร็จแล้วปิดเปิด Terminal / PowerShell ใหม่ พิมพ์ `opencode` แล้วเลือกโมเดลตามที่ mentor บอกใน #อ่านก่อน
+ใช้ได้ทั้งแอป OpenCode (Desktop) และตัว terminal ถ้ามีแอปอยู่แล้ว ตัวติดตั้งจะไม่ติดตั้ง OpenCode ซ้ำ
+
+เสร็จแล้ว **ปิด OpenCode ให้สนิท** (Mac: Cmd+Q, Windows: ปิดจาก system tray ด้วย) แล้วเปิดใหม่ เปิดโฟลเดอร์โปรเจกต์ แล้วเลือกโมเดลตามที่ mentor บอกใน #อ่านก่อน
 
 ตัวติดตั้งจะบอกก่อนว่าจะทำอะไรในเครื่อง แล้วรอให้เราพิมพ์ `y` ถึงจะเริ่ม
 
@@ -32,7 +34,7 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 
 ## อัปเดต
 
-Skills ของ SeedStack จะเช็กเองตอนเริ่มว่ามีเวอร์ชันใหม่ไหม แล้วบอกเรา (ไม่ติดตั้งเอง) จะอัปเดต: ปิด OpenCode แล้วรันบรรทัดติดตั้งเดิมอีกครั้ง แล้วเปิด OpenCode ใหม่ เช็กเวอร์ชันได้ด้วย `node ~/.config/opencode/skills/seedstack-connect/sync.mjs check-update`
+Skills ของ SeedStack จะเช็กเองตอนเริ่มว่ามีเวอร์ชันใหม่ไหม แล้วบอกเรา (ไม่ติดตั้งเอง) จะอัปเดต: ปิด OpenCode ให้สนิท แล้วรันบรรทัดติดตั้งเดิมอีกครั้งใน Terminal/PowerShell แล้วเปิด OpenCode ใหม่ เช็กเวอร์ชันได้ด้วย `node ~/.config/opencode/skills/seedstack-connect/sync.mjs check-update`
 
 ## ใช้ยังไง
 

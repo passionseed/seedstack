@@ -36,7 +36,7 @@ If they want to stop sending: `node "<skills dir>/seedstack-connect/sync.mjs" fo
 Once per session, when a SeedStack skill starts, run `node "<skills dir>/seedstack-connect/sync.mjs" check-update` (read-only; skip if `node` is missing). If it says an update is available, tell the student in one line and show the install line for their OS:
 - Mac: `curl -fsSL https://raw.githubusercontent.com/passionseed/seedstack/main/install.sh | bash`
 - Windows: `irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | iex`
-They run it themselves after closing OpenCode, then reopen it. Never run it for them. If they would rather keep going now, that is fine; continue.
+They run it in their own Terminal or PowerShell after fully quitting OpenCode (the app too: Cmd+Q on Mac, close from the system tray on Windows), then reopen it. Never run it for them. If they would rather keep going now, that is fine; continue.
 
 ## Telemetry contract (used by every SeedStack skill)
 
