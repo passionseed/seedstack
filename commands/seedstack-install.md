@@ -1,5 +1,5 @@
 ---
-description: Set up Node, git, Vercel and Supabase CLIs step by step
+description: Set up what you need to build on this computer (Node, git, project folder), with the why
 ---
 
 Load the `seedstack-install-doctor` skill with the skill tool and follow it exactly.
