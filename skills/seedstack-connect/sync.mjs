@@ -10,7 +10,7 @@
 //
 // Events stay in ~/.seedstack/events.jsonl. Nothing leaves this computer until the
 // student links this device after signing in with Discord,
-// and the server refuses events unless the student and a parent consented.
+// and the server refuses events unless the student agreed on /shift/seedstack.
 
 import { chmodSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
@@ -86,7 +86,7 @@ async function sync() {
       return console.log("SeedStack: offline, will retry next time. Events are safe locally.");
     }
     if (result.status === 403) {
-      return console.log("SeedStack: waiting for consent (student + parent) at /shift/seedstack. Kept locally.");
+      return console.log("SeedStack: not agreed yet at /shift/seedstack (or withdrawn). Kept locally.");
     }
     if (result.status === 401) {
       return console.log("SeedStack: connect code expired or withdrawn. Get a new one at /shift/seedstack.");
