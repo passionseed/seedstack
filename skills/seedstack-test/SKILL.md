@@ -53,6 +53,10 @@ Why: a post that says "ช่วยเทสต์หน่อย" to everyone g
 4. **Public post too, but done well:** a public post (not close friends) in a group where these users are, that names the problem in their words and makes a specific small ask. It adds to direct asks, it does not replace them.
 5. Track counts in `test-log.md`: asked, replied, booked, tested.
 
+## Can testers actually open it?
+
+Before recruiting for a test that needs the app, check how testers will reach it. If it only runs on the student's computer (`localhost`, a double-clicked `index.html`), or the AI Studio share link makes friends log in, testers on their own phones cannot open it. Say so in one line with the why, and offer to go live now: when they agree, load the `seedstack-live` skill and continue there (it walks them through Vercel, and Supabase only if the test needs saved data), then come back here to recruit. Alternatives if they would rather not deploy yet: test in person on their own computer or phone, or share their screen on a video call. Their call.
+
 ## 2. Run the test
 
 Why: what people do beats what people say. Watching one person get stuck teaches more than ten people saying "ดีนะ".
