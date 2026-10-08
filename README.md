@@ -38,7 +38,7 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 | `/seedstack-scope` | ถามคำถามจากบทสัมภาษณ์ของเรา จนเราพิมพ์ "ล็อก" | `scope-card.md` |
 | `/seedstack-ship` | เช็กก่อนสร้างว่าพร้อมเทสต์กับคนจริงไหม | `ship-ticket.md` |
 | `/seedstack-test` | หาคนเทสต์แบบทักตรง ไม่ใช่โพสต์ลอยๆ, เทสต์แบบดูเขาทำ, ถามเรื่องที่เคยเกิดขึ้นจริง, จดหลักฐาน, ตัดสินใจเปลี่ยน | `test-log.md` |
-| `/seedstack-live` | พอของในเครื่องเวิร์กแล้ว พาขึ้น Vercel ให้เพื่อนเปิดได้ และ Supabase เฉพาะถ้าเทสต์ต้องเก็บข้อมูล | ลิงก์ live |
+| `/seedstack-live` | พอของในเครื่องเวิร์กแล้ว พาขึ้น Vercel ให้เพื่อนเปิดได้ (ทำใน Google AI Studio มา? ถามก่อนว่าอยากย้ายไหม แล้วพา export zip) และ Supabase เฉพาะถ้าเทสต์ต้องเก็บข้อมูล | ลิงก์ live |
 
 | `/seedstack-connect` | (ไม่บังคับ) ให้พี่ mentor เห็นความคืบหน้า ต้องยินยอมทั้งเราและผู้ปกครอง | พี่เห็นว่าเราติดตรงไหน |
 

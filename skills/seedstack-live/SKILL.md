@@ -1,6 +1,6 @@
 ---
 name: seedstack-live
-description: Put a SHIFT student's working project in front of real testers. Introduces the Vercel CLI only when they need a link testers can open, and the Supabase CLI only if their test needs to save testers' data. Teaches the why behind each step; the student installs and runs every command. Use when the student runs /seedstack-live, says their app works and they want people to try it, or asks how to deploy or save data.
+description: Put a SHIFT student's working project in front of real testers. Introduces the Vercel CLI only when they need a link testers can open, and the Supabase CLI only if their test needs to save testers' data. Teaches the why behind each step; the student installs and runs every command. Also moves apps built in Google AI Studio to Vercel, if the student wants that. Use when the student runs /seedstack-live, says their app works and they want people to try it, mentions AI Studio, or asks how to deploy or save data.
 license: MIT
 metadata:
   step: ship
@@ -23,6 +23,24 @@ The student has something that works on their own computer. Now it has to reach 
 Ask them to show you it working on their computer (a one-page app: double-click `index.html`; a framework app: they run it themselves, e.g. `npm run dev`). If their test is rung 0 or 1 (paper or by hand), they do not need this skill yet; point them to `/seedstack-test`. One question: "ถ้าเพื่อนเปิดตอนนี้ เขาทำสิ่งเดียวที่ต้องเวิร์กใน ship ticket ได้ไหม?" If yes, go. If not quite, it can still go live; testers seeing a rough version early is useful data. Let them decide.
 
 Write the `start` event (step `ship`).
+
+## Built in Google AI Studio?
+
+Ask first, do not assume. Some students built their app in Google AI Studio. Ask: "ตอนนี้ใช้ลิงก์แชร์จาก AI Studio ให้เพื่อนเทสต์อยู่แล้วไหม? ลองให้เพื่อนเปิดดูหรือยังว่าเปิดได้เลยไหม?" Then lay out the choice in two lines and let them pick:
+
+- **Stay in AI Studio:** fastest. If friends can open the share link (or AI Studio's own deploy works for them), that is enough for testing this week. Go straight to `/seedstack-test`.
+- **Move to Vercel:** their own link, no AI Studio account needed to open it, they learn how deploying works, and they own the code. Costs about 30 to 60 minutes.
+
+If they choose Vercel:
+
+1. **Export.** In AI Studio, open the app and use the download / export option to get a **.zip** of the code. Why: the code has to be on their computer before they can put it anywhere else.
+2. **Unzip into their project folder.** They move the zip into `~/shift/<name>` (or their project folder), double-click to unzip, then in their terminal `cd` into the unzipped folder and open OpenCode there.
+3. **Look at what came out, together.** You read `package.json` and list the files (read-only) and explain in plain words what is there: the frontend (React, what people see) and, if present, a server part (Node, where the Gemini key is used). Why: they should know what they are deploying.
+4. **The Gemini key.** AI Studio kept the key for them; outside AI Studio they need their own. They open https://aistudio.google.com/apikey and create one. They put it in a file named `.env.local` as `GEMINI_API_KEY=...` (check the code for the exact variable name it reads). Check that `.gitignore` lists `.env*`; if not, they add it. Why: a key is like a password that spends from their account; it must never be in code that gets shared or uploaded.
+5. **Run it locally first.** They run `npm install` (why: downloads the building blocks listed in `package.json`), then the dev script in `package.json` (usually `npm run dev`), and open the local address it prints. If it works here, it is worth deploying. If not, read the error with them.
+6. **Check where the key is used.** Search the code (read-only) for where Gemini is called. If it is called from server code, good: the key stays secret. If it is called from browser code (React components, or `vite.config` injecting the key into the page), explain: on a public link anyone could copy the key and use up its quota. Recommend moving that one call into a small server function in `api/` (they do it with OpenCode as their tool; you explain each part). If they still want to ship as is for a quick test, they use a key with **no billing attached**, and you say once that it can be used up by strangers.
+7. **Deploy with Vercel** using Step 1 below. Before `vercel --prod`, they add the key to Vercel: `vercel env add GEMINI_API_KEY` (choose Production and Preview). Why: the `.env.local` file stays on their computer; Vercel needs its own copy.
+8. **If the Vercel build fails** on a custom server setup, read the error together and try one fix. If it is still failing after about 30 minutes, suggest going back to AI Studio's share link for this week's tests. Why: testing with real people matters more this week than where it is hosted. They decide.
 
 ## Step 1: A link testers can open (Vercel)
 
