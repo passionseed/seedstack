@@ -23,6 +23,11 @@ Getting testers is the hard part, not building. Past cohorts built things and th
 
 Read `scope-card.md` and `ship-ticket.md` if present (who the users are, the 48-hour test, the rung). Read `test-log.md` if it exists. Then pick the part they need: recruit, run, or decide. Write the `start` event the first time.
 
+- **No scope card?** Do not send them away to make one. Ask two questions and use their answers in its place: "ใครเจอปัญหานี้ (เจาะจงที่สุด)?" and "อยากรู้อะไรจากการเทสต์ครั้งนี้?"
+- **Nothing to show yet?** They can still test today. Offer two options and let them pick:
+  - **Test the problem:** a 10-minute talk using the after-test questions in part 2 (last time it happened, what they use now, what it cost them). Why: if nobody has the problem, no prototype will fix that.
+  - **Test a sketch:** draw the one screen on paper in 15 minutes and run part 2 with it (they play the computer). Why: people react to something they can see far more honestly than to an idea.
+
 ## Already tested? Sort the feedback first
 
 If they arrive with feedback from tests they already ran (notes, chat screenshots, voice memos they summarise), help them sort each item into three piles before deciding anything. They do the sorting; you ask "เขาทำ หรือเขาพูด?" when it is unclear.
@@ -37,7 +42,7 @@ Why: three polite "ดีนะ" can feel like success and still mean nobody wou
 
 Why: a post that says "ช่วยเทสต์หน่อย" to everyone gets almost nobody. A message to one person, saying why *them*, asking for something small with a time, gets a yes. Expect about 1 in 4 to say yes, so to get 3 to 5 testers, ask 15 to 20 people.
 
-1. **List 20 names or places** that match "who" in their scope card: friends, classmates, their club, a cousin, a teacher, a LINE/Discord/Facebook group where these people already are. Help them think of places by asking where those people hang out and complain about this problem.
+1. **List 20 names or places** that match "who" (from the scope card, or their answer above): friends, classmates, their club, a cousin, a teacher, a LINE/Discord/Facebook group where these people already are. Help them think of places by asking where those people hang out and complain about this problem.
 2. **They draft one message.** Check it against these (ask, do not rewrite):
    - Personal: does it say why this person?
    - Small: is the ask 10 to 15 minutes, not "use my app"?
