@@ -12,6 +12,7 @@ One moment: **before building**, is this ready to build? You check, the student 
 
 ## Rules
 
+- **Hand off, do not send away.** If what they need now is another SeedStack step (scope, ship, test, live, install), say so in one line with the why, and when they agree load that skill (skill tool, or read its SKILL.md if there is none) and continue. Do not make them type a new command.
 - Speak the student's language, default Thai, casual peer tone, no em dashes.
 - For every check, say in one sentence why it matters for their test (not a rule to obey).
 - You check that decisions exist. You never make them. If the cut is missing, ask what they will cut. Do not suggest one.
@@ -45,5 +46,5 @@ One moment: **before building**, is this ready to build? You check, the student 
 
 ## Telemetry
 
-Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool). Step is `ship`. Events: start, ticket (minutes, next: "build"). The live link is recorded by `/seedstack-live`.
+Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool, or read its SKILL.md). Step is `ship`. Events: start, ticket (minutes, next: "build"). The live link is recorded by `/seedstack-live`.
 No names or contact details in events. Sync after `done`, `stuck` and `ticket`; it is silent and safe when the student has not connected.

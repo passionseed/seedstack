@@ -19,6 +19,20 @@ has_opencode() {
     [ -d "$HOME/Library/Application Support/ai.opencode.desktop" ]
 }
 
+# Each install clears the previous version first so renamed or removed
+# skills and commands do not linger. Both use $SRC, set in main.
+install_skills() {
+  mkdir -p "$1"
+  rm -rf "$1"/seedstack "$1"/seedstack-*
+  cp -R "$SRC"/skills/seedstack* "$1/"
+}
+
+install_commands() {
+  mkdir -p "$1"
+  rm -f "$1"/seedstack*.md
+  cp "$SRC"/commands/seedstack*.md "$1/"
+}
+
 # Wrapped in main so the whole script is parsed before it runs (safe for curl | bash).
 confirm() {
   cat <<'MSG'
@@ -26,8 +40,9 @@ confirm() {
 SeedStack จะทำสิ่งนี้ในเครื่องเรา:
   1. ติดตั้ง OpenCode จาก opencode.ai (ถ้ายังไม่มีทั้งแอป OpenCode และตัว terminal) และเพิ่ม PATH ในไฟล์ตั้งค่า shell
   2. คัดลอก skills และ commands ของ SeedStack ไปที่ ~/.config/opencode
+     และ ~/.claude ถ้ามี Claude Code, ~/.agents/skills ถ้ามี Codex
   ไม่ส่งข้อมูลอะไรให้ PassionSeed จนกว่าเราจะพิมพ์ /seedstack-connect และผู้ปกครองยินยอมบนเว็บ
-  ลบออกทีหลังได้: rm -rf ~/.config/opencode/skills/seedstack-* ~/.config/opencode/commands/seedstack-*.md
+  ลบออกทีหลังได้: rm -rf ~/.config/opencode/skills/seedstack* ~/.config/opencode/commands/seedstack*.md ~/.claude/skills/seedstack* ~/.claude/commands/seedstack*.md ~/.agents/skills/seedstack*
 
 MSG
   if [ "${SEEDSTACK_YES:-}" = "1" ]; then return 0; fi
@@ -65,13 +80,23 @@ main() {
   fi
 
   say "Installing skills and commands into $CONFIG_DIR"
-  mkdir -p "$CONFIG_DIR/skills" "$CONFIG_DIR/commands"
-  # Clear the previous version first so renamed or removed skills do not linger.
-  rm -rf "$CONFIG_DIR"/skills/seedstack-* "$CONFIG_DIR"/commands/seedstack-*.md
-  for dir in "$SRC"/skills/seedstack-*; do
-    cp -R "$dir" "$CONFIG_DIR/skills/$(basename "$dir")"
-  done
-  cp "$SRC"/commands/seedstack-*.md "$CONFIG_DIR/commands/"
+  install_skills "$CONFIG_DIR/skills"
+  install_commands "$CONFIG_DIR/commands"
+
+  # Claude Code reads the same SKILL.md format from ~/.claude. OpenCode also
+  # scans ~/.claude/skills; identical copies there are harmless.
+  if command -v claude >/dev/null 2>&1 || [ -d "$HOME/.claude" ]; then
+    say "Also installing for Claude Code into ~/.claude"
+    install_skills "$HOME/.claude/skills"
+    install_commands "$HOME/.claude/commands"
+  fi
+
+  # Codex reads skills (no slash commands) from ~/.agents/skills; students
+  # start one by typing $seedstack-test. OpenCode scans this folder too.
+  if command -v codex >/dev/null 2>&1 || [ -d "$HOME/.codex" ]; then
+    say "Also installing for Codex into ~/.agents/skills (type \$seedstack in Codex)"
+    install_skills "$HOME/.agents/skills"
+  fi
 
   say "Installed SeedStack $(cat "$CONFIG_DIR/skills/seedstack-connect/VERSION" 2>/dev/null)"
   say "Done. Quit OpenCode completely (Cmd+Q) and open it again so it loads the new skills."

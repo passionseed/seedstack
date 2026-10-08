@@ -17,9 +17,9 @@ Write-Host @"
 SeedStack จะทำสิ่งนี้ในเครื่องเรา:
   1. ตั้ง PowerShell ให้รันเครื่องมือที่เราติดตั้งเองได้ (RemoteSigned เฉพาะบัญชีเรา)
   2. ติดตั้ง OpenCode ด้วย npm เฉพาะถ้ายังไม่มีทั้งแอป OpenCode และตัว terminal (ต้องมี Node.js ก่อน)
-  3. คัดลอก skills และ commands ของ SeedStack ไปที่ $ConfigDir
+  3. คัดลอก skills และ commands ของ SeedStack ไปที่ $ConfigDir (และ .claude ถ้ามี Claude Code, .agents\skills ถ้ามี Codex)
   ไม่ส่งข้อมูลอะไรให้ PassionSeed จนกว่าเราจะพิมพ์ /seedstack-connect และผู้ปกครองยินยอมบนเว็บ
-  ลบออกทีหลังได้: ลบโฟลเดอร์ seedstack-* ใน $ConfigDir\skills และไฟล์ seedstack-*.md ใน $ConfigDir\commands
+  ลบออกทีหลังได้: ลบโฟลเดอร์ seedstack* ใน $ConfigDir\skills และไฟล์ seedstack*.md ใน $ConfigDir\commands (และใน .claude, .agents\skills ถ้ามี)
 
 "@
 if ($env:SEEDSTACK_YES -ne "1") {
@@ -70,14 +70,36 @@ if ($env:SEEDSTACK_SRC) {
 }
 
 Say "Installing skills and commands into $ConfigDir"
-New-Item -ItemType Directory -Force -Path (Join-Path $ConfigDir "skills"), (Join-Path $ConfigDir "commands") | Out-Null
 # Clear the previous version first so renamed or removed skills do not linger.
-Get-ChildItem (Join-Path $ConfigDir "skills") -Directory -Filter "seedstack-*" | Remove-Item -Recurse -Force
-Get-ChildItem (Join-Path $ConfigDir "commands") -File -Filter "seedstack-*.md" | Remove-Item -Force
-Get-ChildItem (Join-Path $Src "skills") -Directory -Filter "seedstack-*" | ForEach-Object {
-  Copy-Item $_.FullName (Join-Path $ConfigDir "skills\$($_.Name)") -Recurse
+function Install-Into($Dir) {
+  New-Item -ItemType Directory -Force -Path (Join-Path $Dir "skills"), (Join-Path $Dir "commands") | Out-Null
+  Get-ChildItem (Join-Path $Dir "skills") -Directory -Filter "seedstack*" | Remove-Item -Recurse -Force
+  Get-ChildItem (Join-Path $Dir "commands") -File -Filter "seedstack*.md" | Remove-Item -Force
+  Get-ChildItem (Join-Path $Src "skills") -Directory -Filter "seedstack*" | ForEach-Object {
+    Copy-Item $_.FullName (Join-Path $Dir "skills\$($_.Name)") -Recurse
+  }
+  Copy-Item (Join-Path $Src "commands\seedstack*.md") (Join-Path $Dir "commands") -Force
 }
-Copy-Item (Join-Path $Src "commands\seedstack-*.md") (Join-Path $ConfigDir "commands") -Force
+
+Install-Into $ConfigDir
+
+# Claude Code reads the same SKILL.md format from ~/.claude.
+$ClaudeDir = Join-Path $HOME ".claude"
+if ((Get-Command claude -ErrorAction SilentlyContinue) -or (Test-Path $ClaudeDir)) {
+  Say "Also installing for Claude Code into $ClaudeDir"
+  Install-Into $ClaudeDir
+}
+
+# Codex reads skills (no slash commands) from ~/.agents/skills; type $seedstack in Codex.
+if ((Get-Command codex -ErrorAction SilentlyContinue) -or (Test-Path (Join-Path $HOME ".codex"))) {
+  $AgentsSkills = Join-Path $HOME ".agents\skills"
+  Say "Also installing for Codex into $AgentsSkills (type `$seedstack in Codex)"
+  New-Item -ItemType Directory -Force -Path $AgentsSkills | Out-Null
+  Get-ChildItem $AgentsSkills -Directory -Filter "seedstack*" | Remove-Item -Recurse -Force
+  Get-ChildItem (Join-Path $Src "skills") -Directory -Filter "seedstack*" | ForEach-Object {
+    Copy-Item $_.FullName (Join-Path $AgentsSkills $_.Name) -Recurse
+  }
+}
 
 if ($Tmp) { Remove-Item $Tmp -Recurse -Force }
 

@@ -22,6 +22,7 @@ If they want to install Vercel or Supabase now anyway, that is fine: help them, 
 
 ## Rules
 
+- **Hand off, do not send away.** If what they need now is another SeedStack step (scope, ship, test, live, install), say so in one line with the why, and when they agree load that skill (skill tool, or read its SKILL.md if there is none) and continue. Do not make them type a new command.
 - Speak the student's language. Default to Thai, casual and respectful, like a slightly older peer. Never talk down. No em dashes.
 - **Never install anything yourself.** Do not run install, login, `mkdir`, `git init`, `npm install`, or anything with `sudo` through your shell tool, even if the student asks you to. If they ask, say kindly that doing it themselves is the point, and you will stay right here to explain each part.
 - **Open the official page, then guide.** For each tool, open its official install page in their browser (Mac: `open <url>`, Windows: `Start-Process <url>`). That is the only thing you run besides read-only checks. Tell them exactly where on the page to look (which button, which tab, which box to copy).
@@ -96,5 +97,5 @@ Write the `done` event, then tell them the next step is `/seedstack-scope` insid
 
 ## Telemetry
 
-Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool). Step is `install`. Events: start, stuck (detail: "<tool>: <first line of error>"), done (minutes since start, next: "scope").
+Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool, or read its SKILL.md). Step is `install`. Events: start, stuck (detail: "<tool>: <first line of error>"), done (minutes since start, next: "scope").
 No names or contact details in events. Sync after `done`, `stuck` and `ticket`; it is silent and safe when the student has not connected.

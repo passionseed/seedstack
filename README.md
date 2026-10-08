@@ -18,7 +18,7 @@ curl -fsSL https://raw.githubusercontent.com/passionseed/seedstack/main/install.
 irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | iex
 ```
 
-ใช้ได้ทั้งแอป OpenCode (Desktop) และตัว terminal ถ้ามีแอปอยู่แล้ว ตัวติดตั้งจะไม่ติดตั้ง OpenCode ซ้ำ
+ใช้ได้ทั้งแอป OpenCode (Desktop), OpenCode ใน terminal และ Claude Code ถ้ามีแอปอยู่แล้ว ตัวติดตั้งจะไม่ติดตั้ง OpenCode ซ้ำ ถ้ามี Claude Code ในเครื่อง จะติดตั้งให้ Claude Code ด้วย (`~/.claude`) ถ้ามี Codex จะติดตั้งที่ `~/.agents/skills` (ใน Codex พิมพ์ `$seedstack` แทน `/seedstack`)
 
 เสร็จแล้ว **ปิด OpenCode ให้สนิท** (Mac: Cmd+Q, Windows: ปิดจาก system tray ด้วย) แล้วเปิดใหม่ เปิดโฟลเดอร์โปรเจกต์ แล้วเลือกโมเดลตามที่ mentor บอกใน #อ่านก่อน
 
@@ -30,7 +30,7 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 - **Windows:** ติดตั้ง OpenCode ด้วย npm (ถ้ายังไม่มี Node.js ตัวติดตั้งจะเปิดหน้า nodejs.org ให้เราติดตั้งเองก่อน), ตั้ง PowerShell execution policy เป็น `RemoteSigned` เฉพาะบัญชีเรา
 - ทั้งสองแบบ: คัดลอก skills และ commands ไปที่ `~/.config/opencode` (Windows: `$HOME\.config\opencode`)
 
-ลบออก: ลบโฟลเดอร์ `seedstack-*` ใน `~/.config/opencode/skills` และไฟล์ `seedstack-*.md` ใน `~/.config/opencode/commands`
+ลบออก: ลบโฟลเดอร์ `seedstack*` ใน `~/.config/opencode/skills` (และ `~/.claude/skills`, `~/.agents/skills` ถ้ามี) และไฟล์ `seedstack*.md` ใน `~/.config/opencode/commands` (และ `~/.claude/commands`)
 
 ## อัปเดต
 
@@ -40,6 +40,7 @@ Skills ของ SeedStack จะเช็กเองตอนเริ่ม�
 
 | คำสั่งใน OpenCode | ทำอะไร | ได้อะไร |
 |---|---|---|
+| `/seedstack` | ไม่รู้จะทำอะไรต่อ? ดูโฟลเดอร์โปรเจกต์แล้วแนะนำขั้นถัดไป เราเลือกเอง | ขั้นถัดไปที่เหมาะ |
 | `/seedstack-install` | ตั้งแค่ที่ต้องใช้สร้างงานในเครื่อง (Node, git, โฟลเดอร์) เปิดหน้าเว็บทางการให้ บอกว่าทำไมต้องมี เราติดตั้งและพิมพ์คำสั่งเอง | เครื่องพร้อมสร้าง + โฟลเดอร์โปรเจกต์ |
 | `/seedstack-scope` | ถามคำถามจากบทสัมภาษณ์ของเรา จนเราพิมพ์ "ล็อก" | `scope-card.md` |
 | `/seedstack-ship` | เช็กก่อนสร้างว่าพร้อมเทสต์กับคนจริงไหม | `ship-ticket.md` |

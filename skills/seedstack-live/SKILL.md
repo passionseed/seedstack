@@ -12,6 +12,7 @@ The student has something that works on their own computer. Now it has to reach 
 
 ## Rules
 
+- **Hand off, do not send away.** If what they need now is another SeedStack step (scope, ship, test, live, install), say so in one line with the why, and when they agree load that skill (skill tool, or read its SKILL.md if there is none) and continue. Do not make them type a new command.
 - Speak the student's language, default Thai, casual peer tone, no em dashes.
 - **Why before every step**, one sentence tied to their project and their testers. After each command, one sentence on what just happened.
 - **Never install or log in for them.** Open the official page (Mac: `open <url>`, Windows: `Start-Process <url>`), say where to look, and they run commands in their own Terminal or PowerShell window. You run read-only checks (`vercel --version`, `vercel whoami`, `npx supabase@latest --version`) and fetch their live URL to verify.
@@ -96,4 +97,4 @@ Board, for example:
 
 ## Telemetry
 
-Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool). Step is `ship`. Events: start, stuck (detail: "<tool>: <first line of error>"), done (live_url, next). Sync after `done` and `stuck`.
+Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool, or read its SKILL.md). Step is `ship`. Events: start, stuck (detail: "<tool>: <first line of error>"), done (live_url, next). Sync after `done` and `stuck`.
