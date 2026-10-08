@@ -30,6 +30,10 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 
 ลบออก: ลบโฟลเดอร์ `seedstack-*` ใน `~/.config/opencode/skills` และไฟล์ `seedstack-*.md` ใน `~/.config/opencode/commands`
 
+## อัปเดต
+
+Skills ของ SeedStack จะเช็กเองตอนเริ่มว่ามีเวอร์ชันใหม่ไหม แล้วบอกเรา (ไม่ติดตั้งเอง) จะอัปเดต: ปิด OpenCode แล้วรันบรรทัดติดตั้งเดิมอีกครั้ง แล้วเปิด OpenCode ใหม่ เช็กเวอร์ชันได้ด้วย `node ~/.config/opencode/skills/seedstack-connect/sync.mjs check-update`
+
 ## ใช้ยังไง
 
 | คำสั่งใน OpenCode | ทำอะไร | ได้อะไร |
@@ -57,5 +61,6 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 - Skills live in `skills/<name>/SKILL.md` (OpenCode skill format), slash commands in `commands/`.
 - Installers copy both into `~/.config/opencode/` (`$HOME\.config\opencode` on Windows).
 - `./scripts/validate.sh` checks skill names, descriptions and no em dashes.
+- Releasing: bump `skills/seedstack-connect/VERSION` (date, e.g. `2026.10.09`) in the same commit as any skill change, and post what changed in Discord. Students see the update notice next time a skill starts. Avoid pushing during a live session.
 - Test an install from a local checkout: `SEEDSTACK_YES=1 SEEDSTACK_SRC=$PWD HOME=$(mktemp -d) ./install.sh`
 - Telemetry: `skills/seedstack-connect/sync.mjs` posts to `https://www.passionseed.org/api/seedstack/events` (override with `SEEDSTACK_API_URL`).

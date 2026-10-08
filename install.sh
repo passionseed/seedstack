@@ -54,13 +54,14 @@ main() {
 
   say "Installing skills and commands into $CONFIG_DIR"
   mkdir -p "$CONFIG_DIR/skills" "$CONFIG_DIR/commands"
+  # Clear the previous version first so renamed or removed skills do not linger.
+  rm -rf "$CONFIG_DIR"/skills/seedstack-* "$CONFIG_DIR"/commands/seedstack-*.md
   for dir in "$SRC"/skills/seedstack-*; do
-    name="$(basename "$dir")"
-    rm -rf "$CONFIG_DIR/skills/$name"
-    cp -R "$dir" "$CONFIG_DIR/skills/$name"
+    cp -R "$dir" "$CONFIG_DIR/skills/$(basename "$dir")"
   done
   cp "$SRC"/commands/seedstack-*.md "$CONFIG_DIR/commands/"
 
+  say "Installed SeedStack $(cat "$CONFIG_DIR/skills/seedstack-connect/VERSION" 2>/dev/null)"
   say "Done. Close and reopen Terminal, then run: opencode"
   say "Inside OpenCode, type: /seedstack-install"
 }

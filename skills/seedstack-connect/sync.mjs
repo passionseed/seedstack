@@ -4,6 +4,7 @@
 //   node sync.mjs link        start linking: prints a URL + code to approve in the browser
 //   node sync.mjs link-wait   wait up to ~90s for approval, then store the token (re-run if pending)
 //   node sync.mjs forget      delete the stored token
+//   node sync.mjs check-update   say whether a newer SeedStack exists (never installs)
 //   node sync.mjs status                   connected or local-only
 //   node sync.mjs [sync]                   send unsent events, then exit
 //
@@ -13,7 +14,8 @@
 
 import { chmodSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
-import { join } from "node:path";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 
 const API = process.env.SEEDSTACK_API_URL ?? "https://www.passionseed.org";
 const HOME_DIR = join(homedir(), ".seedstack");
@@ -24,6 +26,8 @@ const WAIT_MS = 90_000;
 // Home folder only: a project folder could come from someone else's repo.
 const EVENT_FILE = join(HOME_DIR, "events.jsonl");
 const BATCH = 100;
+const VERSION_URL = "https://raw.githubusercontent.com/passionseed/seedstack/main/skills/seedstack-connect/VERSION";
+const LOCAL_VERSION_FILE = join(dirname(fileURLToPath(import.meta.url)), "VERSION");
 // Only these keys ever leave the computer, whatever else ends up in the file.
 const FIELDS = ["id", "ts", "step", "event", "minutes", "next", "detail", "live_url"];
 
@@ -157,6 +161,20 @@ async function linkWait() {
   console.log(`SeedStack: still waiting for approval of code ${pending.user_code}. Run link-wait again after approving.`);
 }
 
+async function checkUpdate() {
+  const local = existsSync(LOCAL_VERSION_FILE) ? readFileSync(LOCAL_VERSION_FILE, "utf8").trim() : "unknown";
+  let latest;
+  try {
+    const res = await fetch(VERSION_URL, { signal: AbortSignal.timeout(5000) });
+    latest = res.ok ? (await res.text()).trim() : null;
+  } catch {
+    latest = null;
+  }
+  if (!latest) return console.log(`SeedStack ${local}: could not check for updates (offline?).`);
+  if (latest === local) return console.log(`SeedStack ${local}: up to date.`);
+  console.log(`SeedStack update available: ${local} -> ${latest}. Close OpenCode, run the install line again, then reopen OpenCode.`);
+}
+
 const [command = "sync"] = process.argv.slice(2);
 const commands = {
   link,
@@ -166,6 +184,7 @@ const commands = {
     console.log("SeedStack: disconnected. Nothing more will be sent.");
   },
   status: () => console.log(readToken() ? "SeedStack: connected." : "SeedStack: local only."),
+  "check-update": checkUpdate,
   sync,
 };
 

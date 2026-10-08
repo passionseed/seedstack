@@ -63,14 +63,16 @@ if ($env:SEEDSTACK_SRC) {
 
 Say "Installing skills and commands into $ConfigDir"
 New-Item -ItemType Directory -Force -Path (Join-Path $ConfigDir "skills"), (Join-Path $ConfigDir "commands") | Out-Null
+# Clear the previous version first so renamed or removed skills do not linger.
+Get-ChildItem (Join-Path $ConfigDir "skills") -Directory -Filter "seedstack-*" | Remove-Item -Recurse -Force
+Get-ChildItem (Join-Path $ConfigDir "commands") -File -Filter "seedstack-*.md" | Remove-Item -Force
 Get-ChildItem (Join-Path $Src "skills") -Directory -Filter "seedstack-*" | ForEach-Object {
-  $Dest = Join-Path $ConfigDir "skills\$($_.Name)"
-  if (Test-Path $Dest) { Remove-Item $Dest -Recurse -Force }
-  Copy-Item $_.FullName $Dest -Recurse
+  Copy-Item $_.FullName (Join-Path $ConfigDir "skills\$($_.Name)") -Recurse
 }
 Copy-Item (Join-Path $Src "commands\seedstack-*.md") (Join-Path $ConfigDir "commands") -Force
 
 if ($Tmp) { Remove-Item $Tmp -Recurse -Force }
 
+Say "Installed SeedStack $(Get-Content (Join-Path $ConfigDir 'skills\seedstack-connect\VERSION') -ErrorAction SilentlyContinue)"
 Say "Done. Close and reopen PowerShell, then run: opencode"
 Say "Inside OpenCode, type: /seedstack-install"
