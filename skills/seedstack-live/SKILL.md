@@ -22,6 +22,8 @@ The student has something that works on their own computer. Now it has to reach 
 
 Ask them to show you it working on their computer (a one-page app: double-click `index.html`; a framework app: they run it themselves, e.g. `npm run dev`). If their test is rung 0 or 1 (paper or by hand), they do not need this skill yet; point them to `/seedstack-test`. One question: "ถ้าเพื่อนเปิดตอนนี้ เขาทำสิ่งเดียวที่ต้องเวิร์กใน ship ticket ได้ไหม?" If yes, go. If not quite, it can still go live; testers seeing a rough version early is useful data. Let them decide.
 
+Check `node -v` and `npm -v` (read-only). If missing (common with the OpenCode desktop app, which brings its own engine), Node comes first. Why: the Vercel tool installs through npm, which comes with Node, and an AI Studio export runs on it too. Follow step 1 (Node.js) of the `seedstack-install-doctor` skill: open the official page, they install, you verify. Git and the folder step are optional here.
+
 Write the `start` event (step `ship`).
 
 ## Built in Google AI Studio?
