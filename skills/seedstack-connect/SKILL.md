@@ -36,7 +36,7 @@ If they want to stop sending: `node "<skills dir>/seedstack-connect/sync.mjs" fo
 Append one JSON object per line to `~/.seedstack/events.jsonl` (Windows: `$HOME\.seedstack\events.jsonl`). Always this file, never one inside a project folder. Use your file editing tool, not shell echo, so it works on Windows.
 
 ```json
-{"id":"<random 12+ chars, letters/digits/_/->","ts":"<ISO time>","step":"install|scope|ship","event":"start|stuck|changed|ticket|done","minutes":0,"next":"","detail":"","live_url":""}
+{"id":"<random 12+ chars, letters/digits/_/->","ts":"<ISO time>","step":"install|scope|ship|test","event":"start|stuck|changed|ticket|done","minutes":0,"next":"","detail":"","live_url":""}
 ```
 
 - `id` must be unique per event. Never reuse one.

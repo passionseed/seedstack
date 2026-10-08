@@ -29,8 +29,19 @@ One moment: **before building**, is this ready to build? You check, the student 
    - **Cut:** did they list things they will not do this week? Does the prototype only cover "the one thing that must work"? If the prototype shows more, ask which screens they are willing to drop.
    - **Evidence to collect:** what will they write down from each test?
 5. When all four have the student's answer, write `ship-ticket.md` from `ship-ticket.template.md` next to this skill, using their words. Show it, apply only edits they ask for.
-6. Tell them what comes next and why: build the smallest version with OpenCode and run it on their own computer first (fastest way to see if it works). When the one thing works, `/seedstack-live` puts it in front of testers, and that is when Vercel (and Supabase, only if the test needs saved data) come in.
-7. Write the `ticket` event.
+6. **Pick the cheapest test that answers their 48-hour question.** Show this ladder, explain that each rung costs more time, and ask which is the lowest rung that would still tell them if they are wrong. They choose; you can say which you would pick and why.
+
+   | Rung | What | Time | Good when |
+   |---|---|---|---|
+   | 0 | Paper prototype test: put the drawing in front of someone, ask them to "tap" | 30 min | Checking if people understand it and want it at all |
+   | 1 | Do it by hand (concierge): a Google Form or LINE chat where *they* do the service manually | 1-2 hrs | The value is the result, not the software |
+   | 2 | One-page web app: a single `index.html` built with OpenCode, no framework, opened by double-clicking | 2-4 hrs | People need to click through the one thing themselves |
+   | 3 | Web app + saved data (Supabase) | a day | The test only works if testers' data is kept or shared |
+
+   Default to the lowest rung that answers the question. Why: the goal of this week is evidence from real people, and every hour building is an hour not testing. Rung 0 and 1 can be tested today, before any code.
+   If they pick rung 2: ask OpenCode for **one `index.html` file with plain HTML, CSS and JavaScript, no framework, no npm install**. Why: it opens straight in the browser, nothing to set up, and `/seedstack-live` can put the same folder online in one command. A framework (Next.js, React) is only worth it if they already know it or the page truly cannot be one file.
+7. Whatever the rung, the next step is `/seedstack-test`: finding testers and running the test. For rung 2 and 3, `/seedstack-live` gives them a link testers can open, and that is when Vercel (and Supabase, only if needed) come in.
+8. Add the chosen rung to `ship-ticket.md` and write the `ticket` event (`next`: the rung, e.g. "rung 1: Google Form").
 
 ## Telemetry
 

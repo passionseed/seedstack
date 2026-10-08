@@ -53,7 +53,7 @@ Write the `start` event now and show the board.
 
 ## 1. Node.js (LTS)
 
-Why: the web app you build runs on Node on your computer first, so you can try it yourself before anyone else sees it. OpenCode also uses it to run your project.
+Why: Node runs JavaScript tools on your computer. OpenCode uses it, and later the tool that puts your app online (Vercel) installs through it. If your app grows past one page, it runs on Node too.
 
 Open https://nodejs.org/en/download
 - Tell them: pick the **LTS** version, choose their OS, and download the **installer** (Mac: `.pkg`, Windows: `.msi`). Double-click it and click through with the defaults. On Windows, leave "Add to PATH" ticked.

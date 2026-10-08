@@ -20,7 +20,7 @@ The student has something that works on their own computer. Now it has to reach 
 
 ## Step 0: Is it ready for a tester?
 
-Ask them to show you it working on their computer (run it themselves, e.g. `npm run dev`, and open it). One question: "ถ้าเพื่อนเปิดตอนนี้ เขาทำสิ่งเดียวที่ต้องเวิร์กใน ship ticket ได้ไหม?" If yes, go. If not quite, it can still go live; testers seeing a rough version early is useful data. Let them decide.
+Ask them to show you it working on their computer (a one-page app: double-click `index.html`; a framework app: they run it themselves, e.g. `npm run dev`). If their test is rung 0 or 1 (paper or by hand), they do not need this skill yet; point them to `/seedstack-test`. One question: "ถ้าเพื่อนเปิดตอนนี้ เขาทำสิ่งเดียวที่ต้องเวิร์กใน ship ticket ได้ไหม?" If yes, go. If not quite, it can still go live; testers seeing a rough version early is useful data. Let them decide.
 
 Write the `start` event (step `ship`).
 
@@ -33,7 +33,7 @@ Why, in their terms: right now the app lives only on `localhost`, which means on
    - **Mac `EACCES`:** no sudo. They run, one at a time: `mkdir -p ~/.npm-global`, `npm config set prefix ~/.npm-global`, `echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> ~/.zshrc`, reopen Terminal, install again. Why: npm tried to write to a system folder; this gives it a folder in their own home instead.
    - Windows "running scripts is disabled": `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`, answer `Y`.
 2. No account? Open https://vercel.com/signup, free **Hobby** plan. Then `vercel login`, finish in the browser. Why: the link has to belong to someone, and that is them. Verify `vercel whoami`.
-3. In the project folder, they run `vercel`. It asks a few setup questions; defaults are usually right. Why: this makes a **preview** link, a private test copy they can check first.
+3. In the project folder, they run `vercel`. It asks a few setup questions; defaults are usually right (a single `index.html` needs no build settings). Why: this makes a **preview** link, a private test copy they can check first.
 4. They open the preview link on their **phone**. Why: that is how testers will see it.
 5. When happy: `vercel --prod`. Why: this is the stable link to share; every new `vercel --prod` updates the same link.
 6. Verify: fetch the URL, confirm a 200 with real content (not an error page or a Vercel login wall). If there is a login wall, explain Deployment Protection and point them to Project Settings > Deployment Protection on vercel.com to turn it off for this project.
@@ -72,7 +72,7 @@ Board, for example:
 1. Add the link to `ship-ticket.md` under "ลิงก์".
 2. Ask who the 3 testers are and when (no full names, e.g. "เพื่อน ม.5 ห้อง 2"); write it into the ticket.
 3. Write the `done` event with `live_url` and `next` (their first test, their words).
-4. Suggest posting to #progress: the link, who tests it, what they want to learn.
+4. Next is `/seedstack-test`: getting the link in front of real testers and running the test. Suggest posting to #progress: the link and what they want to learn.
 
 ## Telemetry
 
