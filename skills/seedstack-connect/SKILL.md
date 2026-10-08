@@ -32,10 +32,14 @@ If they want to stop sending: `node "<skills dir>/seedstack-connect/sync.mjs" fo
 
 ## Updates (used by every SeedStack skill)
 
-Once per session, when a SeedStack skill starts, run `node "<skills dir>/seedstack-connect/sync.mjs" check-update` (read-only; skip if `node` is missing). If it says an update is available, tell the student in one line and show the install line for their OS:
-- Mac: `curl -fsSL https://raw.githubusercontent.com/passionseed/seedstack/main/install.sh | bash`
-- Windows: `irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | iex`
-They run it in their own Terminal or PowerShell after fully quitting OpenCode (the app too: Cmd+Q on Mac, close from the system tray on Windows), then reopen it. Never run it for them. If they would rather keep going now, that is fine; continue.
+Once per session, when a SeedStack skill starts, run `node "<skills dir>/seedstack-connect/sync.mjs" check-update` (read-only; skip if `node` is missing). If an update is available, say so in one line and ask "อัปเดตเลยไหม?" Never update without a yes; if they would rather keep going, continue.
+
+When they say yes (or run `/seedstack-update`):
+1. Run `node "<skills dir>/seedstack-connect/sync.mjs" update`. It downloads the new version first and only then replaces the SeedStack files in every place it is installed (OpenCode, Claude Code, Codex). It touches nothing else on their computer.
+2. Tell them the result line, then: quit OpenCode fully (Mac: Cmd+Q; Windows: also close it from the tray) and open it again, because skills load at start.
+3. If it failed, or `node` is missing, fall back to the install line in their own Terminal/PowerShell:
+   - Mac: `curl -fsSL https://raw.githubusercontent.com/passionseed/seedstack/main/install.sh | bash`
+   - Windows: `irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | iex`
 
 ## Telemetry contract (used by every SeedStack skill)
 

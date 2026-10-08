@@ -34,7 +34,9 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 
 ## อัปเดต
 
-Skills ของ SeedStack จะเช็กเองตอนเริ่มว่ามีเวอร์ชันใหม่ไหม แล้วบอกเรา (ไม่ติดตั้งเอง) จะอัปเดต: ปิด OpenCode ให้สนิท แล้วรันบรรทัดติดตั้งเดิมอีกครั้งใน Terminal/PowerShell แล้วเปิด OpenCode ใหม่ เช็กเวอร์ชันได้ด้วย `node ~/.config/opencode/skills/seedstack-connect/sync.mjs check-update`
+พิมพ์ `/seedstack-update` ใน OpenCode (Codex: บอกว่า "อัปเดต SeedStack") แล้วปิด OpenCode ให้สนิทแล้วเปิดใหม่ จบ
+SeedStack จะเช็กเองตอนเริ่มว่ามีเวอร์ชันใหม่ไหม แล้วถามเราก่อนอัปเดตทุกครั้ง
+ถ้าอัปเดตไม่ผ่าน ใช้บรรทัดติดตั้งเดิมอีกครั้งได้เสมอ
 
 ## ใช้ยังไง
 
