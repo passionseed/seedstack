@@ -34,9 +34,10 @@ irm https://raw.githubusercontent.com/passionseed/seedstack/main/install.ps1 | i
 
 | คำสั่งใน OpenCode | ทำอะไร | ได้อะไร |
 |---|---|---|
-| `/seedstack-install` | เปิดหน้าเว็บทางการของ Node, git, Vercel CLI, Supabase CLI ให้ทีละตัว บอกว่าดูตรงไหน เราติดตั้งและพิมพ์คำสั่งเองใน terminal | เครื่องพร้อม ship + โฟลเดอร์โปรเจกต์ |
+| `/seedstack-install` | ตั้งแค่ที่ต้องใช้สร้างงานในเครื่อง (Node, git, โฟลเดอร์) เปิดหน้าเว็บทางการให้ บอกว่าทำไมต้องมี เราติดตั้งและพิมพ์คำสั่งเอง | เครื่องพร้อมสร้าง + โฟลเดอร์โปรเจกต์ |
 | `/seedstack-scope` | ถามคำถามจากบทสัมภาษณ์ของเรา จนเราพิมพ์ "ล็อก" | `scope-card.md` |
-| `/seedstack-ship` | เช็กก่อนสร้าง แล้วเช็กลิงก์หลัง deploy | `ship-ticket.md` + ลิงก์ live |
+| `/seedstack-ship` | เช็กก่อนสร้างว่าพร้อมเทสต์กับคนจริงไหม | `ship-ticket.md` |
+| `/seedstack-live` | พอของในเครื่องเวิร์กแล้ว พาขึ้น Vercel ให้เพื่อนเปิดได้ และ Supabase เฉพาะถ้าเทสต์ต้องเก็บข้อมูล | ลิงก์ live |
 
 | `/seedstack-connect` | (ไม่บังคับ) ให้พี่ mentor เห็นความคืบหน้า ต้องยินยอมทั้งเราและผู้ปกครอง | พี่เห็นว่าเราติดตรงไหน |
 
