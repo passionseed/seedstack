@@ -93,7 +93,7 @@ Board, for example:
 1. Add the link to `ship-ticket.md` under "ลิงก์".
 2. Ask who the 3 testers are and when (no full names, e.g. "เพื่อน ม.5 ห้อง 2"); write it into the ticket.
 3. Write the `done` event with `live_url` and `next` (their first test, their words).
-4. Next is `/seedstack-test`: getting the link in front of real testers and running the test. Suggest posting to #progress: the link and what they want to learn.
+4. If `build-plan.md` still has steps left, go back to `seedstack-build` for the next one; from now on each finished step ends with `vercel --prod`. Otherwise, next is `/seedstack-test`: getting the link in front of real testers and running the test. Suggest posting to #progress: the link and what they want to learn.
 
 ## Telemetry
 

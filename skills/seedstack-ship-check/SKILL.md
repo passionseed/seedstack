@@ -17,7 +17,7 @@ One moment: **before building**, is this ready to build? You check, the student 
 - For every check, say in one sentence why it matters for their test (not a rule to obey).
 - You check that decisions exist. You never make them. If the cut is missing, ask what they will cut. Do not suggest one.
 - Every gap you find ends with a question back to the student, not a fix.
-- Building the app itself is the student's work with OpenCode as their tool. This skill does not write the app.
+- Building the app itself is the student's work with OpenCode as their tool. This skill does not write the app; `/seedstack-build` coaches them through building it step by step.
 
 ## Before building
 
@@ -41,7 +41,7 @@ One moment: **before building**, is this ready to build? You check, the student 
 
    Default to the lowest rung that answers the question. Why: the goal of this week is evidence from real people, and every hour building is an hour not testing. Rung 0 and 1 can be tested today, before any code.
    If they pick rung 2: ask OpenCode for **one `index.html` file with plain HTML, CSS and JavaScript, no framework, no npm install**. Why: it opens straight in the browser, nothing to set up, and `/seedstack-live` can put the same folder online in one command. A framework (Next.js, React) is only worth it if they already know it or the page truly cannot be one file.
-7. Whatever the rung, the next step is `/seedstack-test`: finding testers and running the test. For rung 2 and 3, `/seedstack-live` gives them a link testers can open, and that is when Vercel (and Supabase, only if needed) come in.
+7. Whatever the rung, the next step is `/seedstack-test`: finding testers and running the test. For rung 2 and 3, they build first with `seedstack-build` (offer to load it now: small steps in a second OpenCode session), and `/seedstack-live` gives them a link testers can open, and that is when Vercel (and Supabase, only if needed) come in.
 8. Add the chosen rung to `ship-ticket.md` and write the `ticket` event (`next`: the rung, e.g. "rung 1: Google Form").
 
 ## Telemetry
