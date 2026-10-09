@@ -28,7 +28,7 @@ If the page says "บัญชีนี้ยังไม่ได้ผูก�
 
 ## Disconnect
 
-If they want to stop sending: `node "<skills dir>/seedstack-connect/sync.mjs" forget`. To also delete what was already sent, they press "ถอนความยินยอมและลบข้อมูล" on the web page. Parents can ask for the same through the SHIFT LINE.
+If they want to stop sending: `node "<skills dir>/seedstack-connect/sync.mjs" forget`. To also delete what was already sent, they press "ถอนความยินยอมและลบข้อมูล" on the web page. If they are under 18, a parent can also ask for the same through the SHIFT LINE.
 
 ## Updates (used by every SeedStack skill)
 

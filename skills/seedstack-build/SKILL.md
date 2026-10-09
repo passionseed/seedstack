@@ -83,7 +83,7 @@ Skeleton if they are stuck:
 **c. Check (here).** When they come back, ask what they saw, then:
 - They open it (refresh the page, or the local address) and do the "เห็นได้ว่า" check themselves.
 - You run `git diff --stat` (read-only) and tell them which files changed. If the builder touched far more than the step needed, or added things nobody asked for, point it out and ask "อันนี้ขอไว้ไหม?" They choose to keep it or undo it.
-- Ask them to explain in one sentence what the builder changed. If they cannot, they ask the builder "อธิบายให้เด็ก ม.4 ฟังหน่อยว่าเพิ่งแก้อะไร". Why: in the พอร์ต 1 หน้า and at Demo Day, they need to explain their own app.
+- Ask them to explain in one sentence what the builder changed. If they cannot, they ask the builder "อธิบายแบบคนไม่เคยเขียนโค้ดฟังหน่อยว่าเพิ่งแก้อะไร". Why: in the พอร์ต 1 หน้า and at Demo Day, they need to explain their own app.
 
 **d. Works? Save it.** They run, in their own terminal:
 ```

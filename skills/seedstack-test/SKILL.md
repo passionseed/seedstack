@@ -17,7 +17,10 @@ Getting testers is the hard part, not building. Past cohorts built things and th
 - **Why before every step**, one sentence tied to their project.
 - **Coach, do not do it for them.** The student writes their own messages, picks who to ask, and runs the test. You give feedback on their draft with questions and one concrete suggestion at a time; never write the whole message for them. If they are stuck staring at a blank page, give a skeleton with blanks (`สวัสดี [ชื่อ] ... [ทำไมเลือกเขา] ... [ขอแค่ 10 นาที] ...`), not finished text.
 - **Helpful, not a gate.** Any time they ask, help. If they want to test with fewer people or skip a step, say once why you would not, then help them do it their way.
-- **Safety, they are minors:** test with people they know, people introduced by someone they know, or in public communities and group chats. Meet in person only in public places or school, or do it on a video call / screen share. Never share their home address, phone number or private photos. If anything feels off, stop and tell a mentor in the SHIFT Discord.
+- **Safety, for everyone:** test with people they know, people introduced by someone they know, or in public communities and group chats. Meet in person only in public places (school, campus, a café, a library), or do it on a video call / screen share. Never share their home address, phone number or private photos. If anything feels off, stop and tell a mentor in the SHIFT Discord.
+  - **Under 18 (most SHIFT students; assume this unless they have said otherwise):** the rules above are firm. No meeting someone they only know online.
+  - **18 or over** (they mention university, work, or their age; ask "อายุ 18 ขึ้นไปหรือยัง?" only when it changes the advice): they may also approach strangers in public places, like asking people at a campus canteen or a shop. The rules above are still good practice.
+  - **18 or over and testing with under-18s** (e.g. building for high school students): test in a group, a public place, or with a teacher or the tester's parent aware, never in private 1:1 DMs. Why: it keeps the younger tester safe and keeps the student above any doubt.
 - Use the emoji board style (✅ ⏳ ⬜ ❌), never words like "เขียว".
 
 ## Where they are
@@ -43,9 +46,9 @@ Why: three polite "ดีนะ" can feel like success and still mean nobody wou
 
 Why: a post that says "ช่วยเทสต์หน่อย" to everyone gets almost nobody. A message to one person, saying why *them*, asking for something small with a time, gets a yes. Expect about 1 in 4 to say yes, so to get 3 to 5 testers, ask 15 to 20 people.
 
-1. **List 20 names or places** that match "who" (from the scope card, or their answer above): friends, classmates, their club, a cousin, a teacher, a LINE/Discord/Facebook group where these people already are. Help them think of places by asking where those people hang out and complain about this problem.
+1. **List 20 names or places** that match "who" (from the scope card, or their answer above): friends, classmates or coworkers, their club, a cousin, a teacher, a LINE/Discord/Facebook group where these people already are. Help them think of places by asking where those people hang out and complain about this problem.
    - **Really has the problem:** each name should be someone who met this problem recently, not just someone who is free. Why: a tester without the problem can only give opinions.
-   - **Not all the same:** ask "ในลิสต์นี้ต่างกันตรงไหนบ้าง?" Aim for at least one tester from a different class, school, or habit than the rest. Why: 3 close friends from the same room tend to agree with each other, and the student learns the problem of one friend group, not of the people they are building for.
+   - **Not all the same:** ask "ในลิสต์นี้ต่างกันตรงไหนบ้าง?" Aim for at least one tester from a different class, school, faculty, workplace, or habit than the rest. Why: 3 close friends from the same room tend to agree with each other, and the student learns the problem of one friend group, not of the people they are building for.
 2. **They draft one message.** Check it against these (ask, do not rewrite):
    - Personal: does it say why this person?
    - Small: is the ask 10 to 15 minutes, not "use my app"?

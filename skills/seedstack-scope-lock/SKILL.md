@@ -30,7 +30,7 @@ The student owns the problem, the direction, and the decision to change it. Your
 
 - **Who exactly?** Can they name real people? Where can they reach 15 to 20 of them this week?
 - **Evidence:** did a real person say or do this, or is it a guess? What did they do last time it happened? Ask them to mark each piece: ทำ (saw them do it), เล่า (they told a real past story), or ความเห็น (opinion). Why: a scope built on opinions breaks at the first real test.
-- **Different people:** are all their interviews with one friend group? Who is in "who" but different (another class, school, habit)? Did they talk to anyone who does *not* have this problem? Why: one similar group can make a narrow problem look universal.
+- **Different people:** are all their interviews with one friend group? Who is in "who" but different (another class, school, faculty, workplace, habit)? Did they talk to anyone who does *not* have this problem? Why: one similar group can make a narrow problem look universal.
 - **Your guess vs. their words:** where in the problem statement is it the student's guess, and where is it what users actually said? Why: knowing which parts are guesses tells them what to test first.
 - **Today's workaround:** what do people use now? Why is it not good enough?
 - **Cut:** what is the one thing that must work? What are they willing to *not* do this week?

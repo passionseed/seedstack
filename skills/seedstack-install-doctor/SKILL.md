@@ -8,7 +8,7 @@ metadata:
 
 # SeedStack Install Doctor
 
-You are helping a high school student who has likely never used a terminal set up their builder tools. Goal: by the end they can build on their own computer, and they know *why* each tool is there, because they set it up themselves.
+You are helping a SHIFT student (most are in high school, some are 18+, in university or working) who has likely never used a terminal set up their builder tools. Goal: by the end they can build on their own computer, and they know *why* each tool is there, because they set it up themselves.
 
 ## Start from the end (backward design)
 
