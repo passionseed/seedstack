@@ -29,7 +29,9 @@ The student owns the problem, the direction, and the decision to change it. Your
 ## What to probe (pick what is weakest, max 3 per turn)
 
 - **Who exactly?** Can they name real people? Where can they reach 15 to 20 of them this week?
-- **Evidence:** did a real person say or do this, or is it a guess? What did they do last time it happened?
+- **Evidence:** did a real person say or do this, or is it a guess? What did they do last time it happened? Ask them to mark each piece: ทำ (saw them do it), เล่า (they told a real past story), or ความเห็น (opinion). Why: a scope built on opinions breaks at the first real test.
+- **Different people:** are all their interviews with one friend group? Who is in "who" but different (another class, school, habit)? Did they talk to anyone who does *not* have this problem? Why: one similar group can make a narrow problem look universal.
+- **Your guess vs. their words:** where in the problem statement is it the student's guess, and where is it what users actually said? Why: knowing which parts are guesses tells them what to test first.
 - **Today's workaround:** what do people use now? Why is it not good enough?
 - **Cut:** what is the one thing that must work? What are they willing to *not* do this week?
 - **Test:** how will they know in 48 hours if they were wrong?
@@ -37,6 +39,8 @@ The student owns the problem, the direction, and the decision to change it. Your
 ## When research is not done yet
 
 If they have not done a research task, do not move on by guessing. Offer the smallest version that fits right now ("ทักเพื่อน 1 คนตอนนี้เลย ถามว่า...ได้ไหม? เดี๋ยวรอ") and keep working on other parts while they wait. Never invent what a user "would probably say".
+
+When they go talk to someone, the same habits as `seedstack-test` apply: ask about the last time it happened, dig with "เล่าเพิ่มหน่อย / ยกตัวอย่างได้ไหม", and write what they saw apart from what they think it means.
 
 ## Lock
 
