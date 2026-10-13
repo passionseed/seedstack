@@ -1,6 +1,6 @@
 ---
 name: seedstack-test
-description: Coach a SHIFT student through getting real testers and learning from them. Recruit with direct personal asks (not broadcast posts), run a test where the tester does a task while the student watches, ask about past behavior instead of opinions, log evidence in test-log.md, and decide what to change. Works for paper prototypes, by-hand tests, and live links. Use when the student runs /seedstack-test, needs testers, has a test coming up, or just ran one.
+description: Coach a SHIFT student through getting real testers and learning from them. Recruit with direct personal asks plus well-made posts in at least 10 Facebook groups, run a test where the tester does a task while the student watches, ask about past behavior instead of opinions, log evidence in test-log.md, and decide what to change. Works for paper prototypes, by-hand tests, and live links. Use when the student runs /seedstack-test, needs testers, has a test coming up, or just ran one.
 license: MIT
 metadata:
   step: test
@@ -42,9 +42,11 @@ If they arrive with feedback from tests they already ran (notes, chat screenshot
 
 Why: three polite "ดีนะ" can feel like success and still mean nobody would use it. If most of the pile is opinion, the next step is to re-test 2 people with a task (part 2) rather than to build more. Log what they have in `test-log.md`, then go to part 4 (Decide).
 
-## 1. Recruit: direct asks, not broadcasts
+## 1. Recruit: direct asks and group posts
 
-Why: a post that says "ช่วยเทสต์หน่อย" to everyone gets almost nobody. A message to one person, saying why *them*, asking for something small with a time, gets a yes. Expect about 1 in 4 to say yes, so to get 3 to 5 testers, ask 15 to 20 people.
+SHIFT asks students to start recruiting on day 2, in two ways at once: direct messages and posts in at least 10 Facebook groups. A student who does both well can reach 15 or more testers.
+
+Why both: a post that says "ช่วยเทสต์หน่อย" to everyone gets almost nobody. A message to one person, saying why *them*, asking for something small with a time, gets a yes. Expect about 1 in 4 to say yes, so to get 3 to 5 testers, ask 15 to 20 people. Posts in groups where these users already are reach people the student doesn't know, which direct asks can't.
 
 1. **List 20 names or places** that match "who" (from the scope card, or their answer above): friends, classmates or coworkers, their club, a cousin, a teacher, a LINE/Discord/Facebook group where these people already are. Help them think of places by asking where those people hang out and complain about this problem.
    - **Really has the problem:** each name should be someone who met this problem recently, not just someone who is free. Why: a tester without the problem can only give opinions.
@@ -55,8 +57,8 @@ Why: a post that says "ช่วยเทสต์หน่อย" to everyone g
    - Specific: is there a time ("พรุ่งนี้หลังเลิกเรียน" / "คืนนี้ 2 ทุ่ม")?
    - Honest: does it say it is a rough early version and that criticism helps?
 3. **They send it one by one**, then one follow-up a day later to anyone who did not reply. Why: most "no" is actually "forgot".
-4. **Public post too, but done well:** a public post (not close friends) in a group where these users are, that names the problem in their words and makes a specific small ask. It adds to direct asks, it does not replace them.
-5. Track counts in `test-log.md`: asked, replied, booked, tested.
+4. **Post in at least 10 Facebook groups, done well:** public groups where these users already are (not a close-friends story). Each post names the problem in the users' words and makes a specific small ask with a time. Before posting, a teammate reads it and checks a stranger would know what to do. Help them list the groups by asking where these people complain about this problem. It adds to direct asks, it does not replace them.
+5. Track counts in `test-log.md`: people asked, groups posted in, replied, booked, tested.
 
 ## Can testers actually open it?
 
