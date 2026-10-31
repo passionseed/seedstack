@@ -1,5 +1,5 @@
 ---
-description: Build your app step by step, with a coach here and the AI building in a second session
+description: Say what you want, the AI builds it with you step by step and tells you why each part is there
 ---
 
 Load the `seedstack-build` skill with the skill tool and follow it exactly.

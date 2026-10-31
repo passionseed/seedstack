@@ -17,7 +17,7 @@ One moment: **before building**, is this ready to build? You check, the student 
 - For every check, say in one sentence why it matters for their test (not a rule to obey).
 - You check that decisions exist. You never make them. If the cut is missing, ask what they will cut. Do not suggest one.
 - Every gap you find ends with a question back to the student, not a fix.
-- Building the app itself is the student's work with OpenCode as their tool. This skill does not write the app; `/seedstack-build` coaches them through building it step by step.
+- This skill does not write the app. `/seedstack-build` builds it with them in the same chat, step by step, explaining why at each one.
 
 ## Before building
 
@@ -36,12 +36,12 @@ One moment: **before building**, is this ready to build? You check, the student 
    |---|---|---|---|
    | 0 | Paper prototype test: put the drawing in front of someone, ask them to "tap" | 30 min | Checking if people understand it and want it at all |
    | 1 | Do it by hand (concierge): a Google Form or LINE chat where *they* do the service manually | 1-2 hrs | The value is the result, not the software |
-   | 2 | One-page web app: a single `index.html` built with OpenCode, no framework, opened by double-clicking | 2-4 hrs | People need to click through the one thing themselves |
+   | 2 | Web app with one main screen, built with `/seedstack-build` (fake data, no login) | 2-4 hrs | People need to click through the one thing themselves |
    | 3 | Web app + saved data (Supabase) | a day | The test only works if testers' data is kept or shared |
 
    Default to the lowest rung that answers the question. Why: the goal of this week is evidence from real people, and every hour building is an hour not testing. Rung 0 and 1 can be tested today, before any code.
-   If they pick rung 2: ask OpenCode for **one `index.html` file with plain HTML, CSS and JavaScript, no framework, no npm install**. Why: it opens straight in the browser, nothing to set up, and `/seedstack-live` can put the same folder online in one command. A framework (Next.js, React) is only worth it if they already know it or the page truly cannot be one file.
-7. Whatever the rung, the next step is `/seedstack-test`: finding testers and running the test. For rung 2 and 3, they build first with `seedstack-build` (offer to load it now: small steps in a second OpenCode session), and `/seedstack-live` gives them a link testers can open, and that is when Vercel (and Supabase, only if needed) come in.
+   If they pick rung 2 or 3: `/seedstack-build` sets up a Next.js project for them and builds only the one thing that must work, with fake data first. Why: one small working screen is faster to test than a whole app, and it can grow later without starting over.
+7. Whatever the rung, the next step is `/seedstack-test`: finding testers and running the test. For rung 2 and 3, they build first with `seedstack-build` (offer to load it now: the AI builds it with them in this chat, one small step at a time), and `/seedstack-live` gives them a link testers can open, and that is when Vercel (and Supabase, only if needed) come in.
 8. Add the chosen rung to `ship-ticket.md` and write the `ticket` event (`next`: the rung, e.g. "rung 1: Google Form").
 
 ## Telemetry
