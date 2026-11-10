@@ -1,16 +1,16 @@
 ---
-name: seedstack-autobuild
-description: Fast lane for SHIFT students who are behind or want their idea live as fast as possible. Same tools as /seedstack-build (Next.js, git, Vercel, and Supabase only if needed), but you do almost all the work, including installing git and the Vercel tool, saving and deploying. The student only does what needs a person: their computer password, creating accounts, logging in, and pasting their own secret keys. One short why per step, no quizzes. Use when the student runs /seedstack autobuild or /seedstack-autobuild, or says they are out of time and want the AI to just build it.
+name: seedstack-auto-build
+description: Fast lane for SHIFT students who are behind or want their idea live as fast as possible. Same tools as /seedstack-guidance-build (Next.js, git, Vercel, and Supabase only if needed), but you do almost all the work, including installing git and the Vercel tool, saving and deploying. The student only does what needs a person: their computer password, creating accounts, logging in, and pasting their own secret keys. One short why per step, no quizzes. Use when the student runs /seedstack auto-build or /seedstack-auto-build, or says they are out of time and want the AI to just build it.
 license: MIT
 metadata:
   step: ship
 ---
 
-# SeedStack Autobuild
+# SeedStack Auto-build
 
-For a student who is behind, stuck, or just wants to see their idea alive today. Goal: a live link of their idea as fast as possible, built on the same tools as `/seedstack-build` (Next.js, git, Vercel, Supabase only if needed), so they can switch to building step by step any time.
+For a student who is behind, stuck, or just wants to see their idea alive today. Goal: a live link of their idea as fast as possible, built on the same tools as `/seedstack-guidance-build` (Next.js, git, Vercel, Supabase only if needed), so they can switch to building step by step any time.
 
-**First, read `explain.md` in the `seedstack` skill folder** (`<skills dir>/seedstack/explain.md`, where `<skills dir>` is `~/.config/opencode/skills`, or `$HOME\.config\opencode\skills` on Windows, `~/.claude/skills` in Claude Code, `~/.agents/skills` in Codex). In autobuild, use only its first part: one short why per step, in everyday Thai. Skip the "ask before you tell" questions unless they ask why.
+**First, read `explain.md` in the `seedstack` skill folder** (`<skills dir>/seedstack/explain.md`, where `<skills dir>` is `~/.config/opencode/skills`, or `$HOME\.config\opencode\skills` on Windows, `~/.claude/skills` in Claude Code, `~/.agents/skills` in Codex). In auto-build, use only its first part: one short why per step, in everyday Thai. Skip the "ask before you tell" questions unless they ask why.
 
 ## Who does what
 
@@ -33,14 +33,14 @@ For a student who is behind, stuck, or just wants to see their idea alive today.
 
 ## 1. The idea
 
-Write the `start` event with detail "autobuild". Check for SeedStack updates once (see `seedstack-connect`).
+Write the `start` event with detail "auto-build". Check for SeedStack updates once (see `seedstack-connect`).
 
-Their idea is usually in their message (`/seedstack autobuild เว็บจองคิวร้านตัดผม`). If not, ask one question: "อยากสร้างอะไร ให้ใครใช้?" Read `scope-card.md` and `ship-ticket.md` if they exist. Do not ask anything else; decide the rest yourself and say what you decided in one line.
+Their idea is usually in their message (`/seedstack auto-build เว็บจองคิวร้านตัดผม`). If not, ask one question: "อยากสร้างอะไร ให้ใครใช้?" Read `scope-card.md` and `ship-ticket.md` if they exist. Do not ask anything else; decide the rest yourself and say what you decided in one line.
 
 Show the board and keep it updated:
 
 ```
-Autobuild
+Auto-build
 ⏳ ตั้งโปรเจกต์
 ⬜ สร้างแอป
 ⬜ save (git)
@@ -49,7 +49,7 @@ Autobuild
 
 ## 2. Set up (fast)
 
-1. **Folder.** Same as part 2 of `seedstack-build`: use the current folder if it is for this project; otherwise create `~/shift/<name>` (Windows `$HOME\shift\<name>`) with a short lowercase name you pick from the idea.
+1. **Folder.** Same as part 2 of `seedstack-guidance-build`: use the current folder if it is for this project; otherwise create `~/shift/<name>` (Windows `$HOME\shift\<name>`) with a short lowercase name you pick from the idea.
 2. **Node.** `node -v` (needs 20.9 or newer).
    - Windows: run `winget install -e --id OpenJS.NodeJS.LTS`; the student clicks Yes if a popup asks.
    - Mac: open https://nodejs.org/en/download (`open <url>`); the student downloads the LTS `.pkg` and clicks through (it asks for their password).
@@ -58,7 +58,7 @@ Autobuild
    - Mac: `xcode-select --install`; the student clicks Install in the popup (a few minutes).
    - Windows: `winget install -e --id Git.Git`; the student clicks Yes if asked.
    - Why: "git คือปุ่ม save ของทั้งโปรเจกต์ พังเมื่อไหร่ย้อนได้".
-4. **Next.js.** Use the same `npx create-next-app@latest ... --yes --use-npm --disable-git` commands as part 2 of `seedstack-build` (including the `app-tmp` route when the folder has files). Read the generated `AGENTS.md` before writing code. Why: "โครงเว็บสำเร็จรูป เราไม่ต้องเริ่มจากศูนย์".
+4. **Next.js.** Use the same `npx create-next-app@latest ... --yes --use-npm --disable-git` commands as part 2 of `seedstack-guidance-build` (including the `app-tmp` route when the folder has files). Read the generated `AGENTS.md` before writing code. Why: "โครงเว็บสำเร็จรูป เราไม่ต้องเริ่มจากศูนย์".
 5. **Windows tips.** If `npm` says "running scripts is disabled", the student runs `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` and answers `Y`. If winget stops to ask them to accept terms, the student runs that same command in their own PowerShell and answers. After a winget install, refresh PATH in your shell: `$env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")`.
 
 ## 3. Build the first version
@@ -103,7 +103,7 @@ If the app needs a secret key (for example, calling an AI): the student creates 
 Save (`git add -A`, `git commit -m "..."`), then show:
 
 ```
-Autobuild ✅
+Auto-build ✅
 ✅ แอป Next.js
 ✅ save แล้ว (git)
 ✅ ลิงก์: https://<project>.vercel.app
@@ -118,10 +118,10 @@ Then a short "แอปเรามีอะไรบ้าง", one line per pa
 📒 Supabase: จำสิ่งที่ผู้ใช้กรอกไว้ (ถ้ามี)
 ```
 
-Write `build-plan.md` from the `seedstack-build` template: what was built as ✅ steps, the link, this list, and ideas for later. Why: if they switch to `/seedstack-build`, it picks up from here.
+Write `build-plan.md` from the `seedstack-guidance-build` template: what was built as ✅ steps, the link, this list, and ideas for later. Why: if they switch to `/seedstack-guidance-build`, it picks up from here.
 
-Write the `done` event (detail "autobuild", `live_url`, `next`: their first test). Then hand off to `seedstack-test`: the link is ready, now real people should try it. Mention once that `/seedstack-build` is there when they want to change things step by step and set up the tools themselves.
+Write the `done` event (detail "auto-build", `live_url`, `next`: their first test). Then hand off to `seedstack-test`: the link is ready, now real people should try it. Mention once that `/seedstack-guidance-build` is there when they want to change things step by step and set up the tools themselves.
 
 ## Telemetry
 
-Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool, or read its SKILL.md). Step is `ship`, with detail "autobuild" on every event. Events: start, stuck (detail: "autobuild: <tool>: <first line of error>"), done (live_url, next). Sync after `done` and `stuck`.
+Follow the telemetry contract in the `seedstack-connect` skill (load it with the skill tool, or read its SKILL.md). Step is `ship`, with detail "auto-build" on every event. Events: start, stuck (detail: "auto-build: <tool>: <first line of error>"), done (live_url, next). Sync after `done` and `stuck`.

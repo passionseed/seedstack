@@ -23,7 +23,7 @@ The student has something that works on their own computer. Now it has to reach 
 
 ## Step 0: Is it ready for a tester?
 
-Ask them to show you it working on their computer (a Next.js app from `/seedstack-build`: http://localhost:3000 with `npm run dev` running; a one-page app: double-click `index.html`). If their test is rung 0 or 1 (paper or by hand), they do not need this skill yet; point them to `/seedstack-test`. One question: "ถ้าเพื่อนเปิดตอนนี้ เขาทำสิ่งเดียวที่ต้องเวิร์กได้ไหม?" If yes, go. If not quite, it can still go live; testers seeing a rough version early is useful data. Let them decide.
+Ask them to show you it working on their computer (a Next.js app from `/seedstack-guidance-build`: http://localhost:3000 with `npm run dev` running; a one-page app: double-click `index.html`). If their test is rung 0 or 1 (paper or by hand), they do not need this skill yet; point them to `/seedstack-test`. One question: "ถ้าเพื่อนเปิดตอนนี้ เขาทำสิ่งเดียวที่ต้องเวิร์กได้ไหม?" If yes, go. If not quite, it can still go live; testers seeing a rough version early is useful data. Let them decide.
 
 Check `node -v` and `npm -v` (read-only). If missing (common with the OpenCode desktop app, which brings its own engine), Node comes first. Why: the Vercel tool installs through npm, which comes with Node. Follow step 1 (Node.js) of the `seedstack-install-doctor` skill: open the official page, they install, you verify.
 
@@ -49,7 +49,7 @@ If they choose Vercel:
 
 ## Step 1: A link testers can open (Vercel)
 
-Ask before you tell, unless `/seedstack-build` just did: have them send `http://localhost:3000` (or their local address) to themselves on LINE and open it on their phone. "เกิดอะไรขึ้น? ทำไมเปิดในคอมได้ แต่มือถือไม่ได้?"
+Ask before you tell, unless `/seedstack-guidance-build` just did: have them send `http://localhost:3000` (or their local address) to themselves on LINE and open it on their phone. "เกิดอะไรขึ้น? ทำไมเปิดในคอมได้ แต่มือถือไม่ได้?"
 
 Why, in their terms: right now the app lives only on `localhost`, which means only this computer can open it. Testers are on their own phones. Vercel copies the app to a computer on the internet that is always on, and gives it a link anyone can open.
 
@@ -102,7 +102,7 @@ Board, for example:
 1. Add the link to `ship-ticket.md` under "ลิงก์" (and to `build-plan.md` if there is one, with a line under "แอปเรามีอะไรบ้าง" for Vercel and Supabase, in their words).
 2. Ask who the 3 testers are and when (no full names, e.g. "เพื่อน ม.5 ห้อง 2" or "รุ่นน้องปี 1 คณะเดียวกัน"); write it into the ticket.
 3. Write the `done` event with `live_url` and `next` (their first test, their words).
-4. If `build-plan.md` still has steps left, go back to `seedstack-build` for the next one; from now on you run `vercel --prod --yes` after each finished step. Otherwise, next is `/seedstack-test`: getting the link in front of real testers and running the test. Suggest posting to #progress: the link and what they want to learn.
+4. If `build-plan.md` still has steps left, go back to `seedstack-guidance-build` for the next one; from now on you run `vercel --prod --yes` after each finished step. Otherwise, next is `/seedstack-test`: getting the link in front of real testers and running the test. Suggest posting to #progress: the link and what they want to learn.
 
 ## Telemetry
 

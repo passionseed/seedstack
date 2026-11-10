@@ -100,7 +100,7 @@ main() {
 
   say "Installed SeedStack $(cat "$CONFIG_DIR/skills/seedstack-connect/VERSION" 2>/dev/null)"
   say "Done. Quit OpenCode completely (Cmd+Q) and open it again so it loads the new skills."
-  say "Then open OpenCode and type: /seedstack create <what you want to build> (or just /seedstack)"
+  say "Then open OpenCode and type: /seedstack guidance-build <what you want to build> (or just /seedstack)"
 }
 
 main "$@"

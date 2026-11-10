@@ -94,7 +94,7 @@ Show the final board with every line ✅, for example:
 ✅ ~/shift/<name>
 ```
 
-Write the `done` event, then tell them the next step, inside the project folder: if they already know what to build, they just say it (`/seedstack create <idea>`) and `seedstack-build` builds it with them; if the idea is still wide, `/seedstack-scope` (why: before building, lock what is worth building). Also say that Vercel and Supabase come in `/seedstack-live` once they have something to put in front of testers. Suggest posting the board to #progress so mentors and friends see it. Mention once, without pushing, that `/seedstack-connect` can let mentors see progress automatically if they agree.
+Write the `done` event, then tell them the next step, inside the project folder: if they already know what to build, they just say it (`/seedstack guidance-build <idea>`) and `seedstack-guidance-build` builds it with them; if the idea is still wide, `/seedstack-scope` (why: before building, lock what is worth building). Also say that Vercel and Supabase come in `/seedstack-live` once they have something to put in front of testers. Suggest posting the board to #progress so mentors and friends see it. Mention once, without pushing, that `/seedstack-connect` can let mentors see progress automatically if they agree.
 
 ## Telemetry
 

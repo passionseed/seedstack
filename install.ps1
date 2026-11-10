@@ -105,4 +105,4 @@ if ($Tmp) { Remove-Item $Tmp -Recurse -Force }
 
 Say "Installed SeedStack $(Get-Content (Join-Path $ConfigDir 'skills\seedstack-connect\VERSION') -ErrorAction SilentlyContinue)"
 Say "Done. Close OpenCode completely (also from the system tray) and open it again so it loads the new skills."
-Say "Then open OpenCode and type: /seedstack create <what you want to build> (or just /seedstack)"
+Say "Then open OpenCode and type: /seedstack guidance-build <what you want to build> (or just /seedstack)"

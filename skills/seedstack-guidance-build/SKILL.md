@@ -1,12 +1,12 @@
 ---
-name: seedstack-build
-description: Builds a SHIFT student's web app with them in this chat. The student says what they want ("สร้างเว็บเกี่ยวกับ..."); you set up a Next.js project and write the code in small steps, explaining why at every step in simple Thai. The student installs git, Vercel and Supabase themselves at the moment the app needs each one, so they know what each is for. Use when the student runs /seedstack-build or /seedstack create, says "สร้างเว็บ..." or "อยากทำแอป...", or asks the AI to build or change their app.
+name: seedstack-guidance-build
+description: Builds a SHIFT student's web app with them in this chat. The student says what they want ("สร้างเว็บเกี่ยวกับ..."); you set up a Next.js project and write the code in small steps, explaining why at every step in simple Thai. The student installs git, Vercel and Supabase themselves at the moment the app needs each one, so they know what each is for. Use when the student runs /seedstack-guidance-build or /seedstack guidance-build, says "สร้างเว็บ..." or "อยากทำแอป...", or asks the AI to build or change their app.
 license: MIT
 metadata:
   step: ship
 ---
 
-# SeedStack Build
+# SeedStack Guidance-build
 
 The student says what they want. You build it with them, in this chat, one small step at a time. A working app is half the goal. The other half: by the end, the student can explain what each part of their app is and why it is there. If they can only say "the AI did it", this skill failed.
 
@@ -39,7 +39,7 @@ Why this split: setting up git, Vercel and Supabase themselves is where students
 
 Write the `start` event. Check for SeedStack updates once (see `seedstack-connect`).
 
-Their idea may already be in their message (e.g. `/seedstack create เว็บจองคิวร้านตัดผม`). Read `scope-card.md`, `ship-ticket.md`, `test-log.md` and `build-plan.md` if they exist. If `build-plan.md` has steps still ⬜, show the board and pick up at the next one.
+Their idea may already be in their message (e.g. `/seedstack guidance-build เว็บจองคิวร้านตัดผม`). Read `scope-card.md`, `ship-ticket.md`, `test-log.md` and `build-plan.md` if they exist. If `build-plan.md` has steps still ⬜, show the board and pick up at the next one.
 
 Ask at most two questions, only the ones not already answered:
 - "ใครจะใช้คนแรก?"
